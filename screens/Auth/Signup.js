@@ -5,7 +5,6 @@ import { Button as PaperButton } from "react-native-paper";
 import { useNavigation } from "@react-navigation/native";
 import { Picker } from "@react-native-picker/picker";
 const Signup = () => {
-  const [name, setName] = useState("");
   const [mobile, setMobile] = useState("");
   const [AdmissionNumber, setAdmissionNumber] = useState("");
   const [password, setPassword] = useState("");
@@ -16,10 +15,7 @@ const Signup = () => {
   async function signupHandler() {
     console.log("Current Role : "+role);
     if (role === "student") {
-      if (
-        name === "" ||
-        mobile === "" ||
-        
+      if (        
         AdmissionNumber === "" ||
         password === ""
       ) {
@@ -29,18 +25,20 @@ const Signup = () => {
         );
       }
       else{
-        authContext.signup(mobile,AdmissionNumber,role);
+        authContext.signup(AdmissionNumber,password,role);
       }
     } 
-    else if (name === "" || mobile === "" || password === "") {
+    if(role==="teacher"){
+      if(mobile === "" || password ===""){
         return Alert.alert(
           "Required All Fields",
           "please fill all the details"
         );
+      }else{
+        //Faculty signup
+        authContext.facultySignup(mobile,password,role);
       }
-    else if(password === mobile){
-        return Alert.alert("Warning","your password can not be your mobile number")
-      }
+    }
     
     
     // Alert.alert("Your credentials",name + " "+mobile+" "+age)
@@ -62,14 +60,9 @@ const Signup = () => {
         <Picker.Item label="teacher" value="teacher" />
         <Picker.Item label="principal" value="principal" />
       </Picker>
-      <TextInput
-        placeholder="Enter your name"
-        style={styles.inputContainer}
-        onChangeText={(e) => {
-          setName(e);
-        }}
-      />
+     
       {role === "student" && (
+        <>
         <TextInput
           placeholder="Enter your admission number"
           style={styles.inputContainer}
@@ -77,14 +70,7 @@ const Signup = () => {
             setAdmissionNumber(e);
           }}
         />
-      )}
-      <TextInput
-        placeholder="Enter your mobile number"
-        style={styles.inputContainer}
-        onChangeText={(e) => {
-          setMobile(e);
-        }}
-      />
+
       <TextInput
         placeholder="Create your password"
         style={styles.inputContainer}
@@ -92,6 +78,45 @@ const Signup = () => {
           setPassword(e);
         }}
       />
+        </>
+      )}
+     
+      {role === "teacher" && (<>
+        <TextInput
+          placeholder="Enter your mobile number"
+          style={styles.inputContainer}
+          onChangeText={(e) => {
+            setMobile(e);
+          }}
+        />
+
+      <TextInput
+        placeholder="Create your password"
+        style={styles.inputContainer}
+        onChangeText={(e) => {
+          setPassword(e);
+        }}
+      />
+      </>)}
+
+
+      {role === "principal" && (<>
+        <TextInput
+          placeholder="Enter your mobile number"
+          style={styles.inputContainer}
+          onChangeText={(e) => {
+            setMobile(e);
+          }}
+        />
+
+      <TextInput
+        placeholder="Create your password"
+        style={styles.inputContainer}
+        onChangeText={(e) => {
+          setPassword(e);
+        }}
+      />
+      </>)}
 
       <View style={styles.btn}>
         {

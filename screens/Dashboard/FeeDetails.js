@@ -46,9 +46,10 @@ export default function FeeDetails() {
         <View style={styles.topContainer}>
           <View style={styles.topContainer}>
             <Text style={{ color: "#fffcf6", fontSize: 20 }}>
-              Total Fee : 30,000/- 
+            <>{feesObj.map((item)=> {return item.class.className === authContext.currentLoggedInStudent.className ? <Text style={{color:"white"}}>Total Fee - {item.class.fees+item.class.examFee}/-</Text> : '' } )}</>
+ 
             </Text>
-            <Text style={{ color: "white" }}>Class - {authContext.currentLoggedInStudent && authContext.currentLoggedInStudent.className}</Text>
+            <Text style={{ color: "white" }}>Present Class - {authContext.currentLoggedInStudent && authContext.currentLoggedInStudent.className}</Text>
           </View>
         </View>
 

@@ -3,17 +3,32 @@ import {View, StyleSheet,Text,TextInput,Button,Alert} from 'react-native';
 import { AuthContext } from '../../context/AuthContext';
 import {Button as PaperButton} from "react-native-paper";
 import { useNavigation } from '@react-navigation/native';
+import { Picker } from "@react-native-picker/picker";
+
 const Login = () => {
     const[mobile,setMobile] = useState('');
     const[admissionNumber,setAdmissionNumber] = useState('');
     const[password,setPassword] = useState('');
+  const [role, setRole] = useState("student");
+
     const navigation = useNavigation();
     const authContext = useContext(AuthContext);
 
-   async function signupHandler(){
-        if(mobile ==="" || admissionNumber === "" || password === ""){
+   async function loginHandler(){
+       if(role==="student"){
+        if( admissionNumber === "" || password === ""){
             return Alert.alert("Required All Fields","In order to login, you must fill all the details");
+        }else{
+            authContext.studentLogin(admissionNumber,password,role);
         }
+       }
+       if(role==="teacher" || role === "principal"){
+        if(mobile === "" || password===""){
+            return Alert.alert("Required All Fields","In order to login, you must fill all the details");
+        }else{
+            authContext.facultyLogin(mobile,password,role);
+        }
+       }
         // Alert.alert("Your credentials",name + " "+mobile+" "+age)
         // await AsyncStorage.setItem("mobile",mobile);
         // authContext.signup(mobile);
@@ -24,20 +39,37 @@ const Login = () => {
     return (
         <View style={styles.rootContainer}>
             <Text>Login</Text>
-            
+            <Picker
+        style={styles.inputContainer}
+        onValueChange={(itemValue, itemIndex) => setRole(itemValue)}
+        selectedValue={role}
+      >
+        <Picker.Item label="student" value="student" />
+        <Picker.Item label="teacher" value="teacher" />
+        <Picker.Item label="principal" value="principal" />
+      </Picker>
+             {role === "student" && <>
              <TextInput placeholder='Enter your admission number' style = {styles.inputContainer}
                 onChangeText={ (e)=>{setAdmissionNumber(e)}}
             />
-            <TextInput placeholder='Enter your mobile number' style = {styles.inputContainer}
+            
+            <TextInput placeholder='Enter your password' style = {styles.inputContainer}
+                onChangeText={ (e)=>{setPassword(e)}}/>
+           
+             </>}
+             {(role === "teacher" || role==="principal") && <>
+             <TextInput placeholder='Enter your mobile number' style = {styles.inputContainer}
                 onChangeText={ (e)=>{setMobile(e)}}
 
             />
-            <TextInput placeholder='Create your password' style = {styles.inputContainer}
+
+            <TextInput placeholder='Enter your password' style = {styles.inputContainer}
                 onChangeText={ (e)=>{setPassword(e)}}/>
            
+             </>}
             
             <View style={styles.btn}>
-            <Button title="Login" style={styles.btn} onPress = {signupHandler}/>
+            <Button title="Login" style={styles.btn} onPress = {loginHandler}/>
             </View>
 
             <View style={{marginVertical:18,flexDirection:"row", justifyContent:"space-around",alignItems:"center"}}>

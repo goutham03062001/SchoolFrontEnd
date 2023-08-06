@@ -5,18 +5,24 @@ import { BACKEND_API_URL } from "../utils/Constants";
 import { Alert } from "react-native";
 export const AuthContext = createContext({
     signup:(mobile,id)=>{},
-    login:()=>{},
+    studentLogin:()=>{},
     logout:()=>{},
     authenticated:false,
     authenticateFun:()=>{},
     removeAuthenticate:()=>{},
     getDetails:(inputData)=>{},
     loading:false,
-    currentLoggedInStudent:[{}],
+    currentLoggedInStudent:{},
     sendLeaveLetter : (id,reason,from,to)=>{},
     sentLetter : false,
     getHomeWorkByClassName : (className)=>{},
-    homeWorksArr : [{}]
+    homeWorksArr : [{}],
+    facultySignup:(mobile,password)=>{},
+    facultyLogin:(mobile,password)=>{},
+    currentLoggedInStatus : "",
+    currentLoggedInId:"",
+    updateCurrentStatus : (role)=>{},
+    getPersonalDetails : (id)=>{}
 })
 
 export default function AuthContextProvider({children}){
@@ -26,33 +32,84 @@ export default function AuthContextProvider({children}){
     const[loading,setLoading] = useState(false);
     const[sentLetter,setSentLetter] = useState(false);
     const[homeWorksArr,setHomeWorksArr] = useState([{}]);
-    async function setLocalItem(role,id){
+    const[currentLoggedInStatus,setCurrentLoggedInStatus] = useState("");
+    const[currentLoggedInId,setCurrentLoggedInId] = useState("");
+
+    async function updateCurrentStatus(role,id){
+       let currRole =  await AsyncStorage.getItem("role");
+        setCurrentLoggedInStatus(currRole);
+        setCurrentLoggedInId(id);
+    }
+
+    async function setLocalItem(role,id,idx){
         await AsyncStorage.setItem("isAuthenticated","true");
         await AsyncStorage.setItem("role",role);
-        await AsyncStorage.setItem("AdmissionNumber",id);
+
+        if(idx === 0){
+            await AsyncStorage.setItem("AdmissionNumber",id);
+            setCurrentLoggedInId(id);
+        }if(idx === 1){
+            //here id -> mobile
+            await AsyncStorage.setItem("FacultyMobileNumber",id);
+            setCurrentLoggedInId(id);
+
+        }
     }
-    async function signup(mobile,id,role){
-        console.log("mobile number : ", mobile);
+    async function signup(AdmissionNumber,password,role){
         setLoading(true);
-        const response = await axios.get(BACKEND_API_URL+"/StudentsRoutes/authenticated/"+id).then((data)=>{
+        const config = {
+            headers:{
+                "Content-Type":"application/json"
+            }
+        }
+        const body = {AdmissionNumber,password}
+        const response = await axios.post(BACKEND_API_URL+"/StudentsRoutes/auth/signup",body,config).then((data)=>{
             console.log(data.data);
-            if(data.data === "Not Found"){
+            if(data.data === "This admission number is already registered"){
                 setLoading(false);
-                return Alert.alert("Registration failed","you don't have permission to access this app");
+                return Alert.alert("Registration failed",data.data);
+            }
+            if(data.data === "you don't have any access"){
+                setLoading(false);
+                return Alert.alert("Registration Failed","you don't have any access");
             }
            if(data.data.AdmissionNumber){
             console.log("Authenticated user");
-              setLocalItem(role,id);
+              setLocalItem(role,AdmissionNumber);
                setAuthenticated(true);
                setLoading(false);
            return Alert.alert("Registration Success","You are now authenticated");
            }
            
-        }).catch((err)=>{console.log(err); return Alert.alert("Registration Failed","Error Occurred while signup. Check your internet connection and try again later.")});
+        }).catch((err)=>{console.log(err); setLoading(false); return Alert.alert("Registration Failed","Error Occurred while signup. Check your internet connection and try again later.")});
     }
-    async function login(mobile){
-        await AsyncStorage.setItem("isAuthenticated","true");
-        setAuthenticated(true);
+    async function studentLogin(AdmissionNumber,password,role){
+        // await AsyncStorage.setItem("isAuthenticated","true");
+        // setAuthenticated(true);
+        setLoading(true);
+        const config = {    
+            headers:{
+                "Content-Type":"application/json"
+            }
+        }
+        const body = {AdmissionNumber,password}
+        const response = await axios.post(BACKEND_API_URL+"/StudentsRoutes/auth/login",body,config).then((data)=>{
+            console.log(data.data);
+            if(data.data === "You are not registered yet."){
+                setLoading(false);
+                return Alert.alert("Login Failed","You are not registered yet")
+            }
+            if(data.data === "Either your admission number or password is wrong!"){
+                setLoading(false);
+                return Alert.alert("Login Failed","Either your admission number or password is wrong!");
+            }
+            if(data.data.AdmissionNumber!==null){
+                let idx = 0;
+                setLocalItem(role,AdmissionNumber,idx);
+                setLoading(false);
+                return Alert.alert("Login Success !", "You are now logged in");
+            }
+        }).catch((err)=>{console.log("Error Occurred : "+err.message)});
     }
     async function logout(){
         let allKeys = await AsyncStorage.getAllKeys();
@@ -104,9 +161,79 @@ export default function AuthContextProvider({children}){
             setLoading(false);
         }).catch((err)=>{console.log(err.message)});
     }
+
+    async function facultySignup(mobile,password,role){
+        setLoading(true);
+        const config = {
+            headers:{
+                "Content-Type":"application/json"
+            }
+        }
+        const body = {mobile,password}
+        const response = await axios.post(BACKEND_API_URL+"/TeacherRoutes/auth/Signup",body,config).then((data)=>{
+            console.log(data.data);
+            if(data.data === "This mobile number is already registered"){
+            setLoading(false);
+
+                return Alert.alert("warning","This mobile number is already registered");
+            }
+            if(data.data === "You don't have access"){
+            setLoading(false);
+            return Alert.alert("Warning","You don't have any access")
+            }
+            if(data.data.mobile){
+                setLoading(false);
+                let idx=1;
+                setLocalItem(role,mobile,idx);
+            }
+        }).catch((err)=>{console.log(err.message)})
+    }
+
+    //Faculty Login
+
+    async function facultyLogin(mobile,password,role){
+        //faculty login
+        setLoading(true);
+        const config = {
+            headers:{
+                "Content-Type":"application/json"
+            }
+        }
+        const body = {mobile,password}
+        const response = await axios.post(BACKEND_API_URL+"/TeacherRoutes/auth/login",body,config).then((data)=>{
+            console.log(data.data);
+
+            if(data.data === "You are not registered"){
+                setLoading(false);
+                return Alert.alert("Login Failed","You are not registered");
+            }if(data.data === "Either password or mobile is wrong"){
+                setLoading(false);
+                return Alert.alert("Login Failed",data.data);
+            }
+            if(data.data.mobile!==null){
+                setLoading(false);
+                let idx = 1;
+                setLocalItem(role,mobile,idx)
+                return Alert.alert("Login Success","You are now logged in!")
+            }
+           
+        }).catch((err)=>{console.log(err.message)})
+    }
+    async function getPersonalDetails(admissionNumber){
+        setLoading(true);
+        const response = await axios.get(BACKEND_API_URL+"/Student/get/details/"+admissionNumber).then((data)=>{
+            console.log("Loading current student details");
+            console.log(data.data);
+            setCurrStudentDetails(data.data);
+            setLoading(false);
+        }).catch((err)=>{
+            console.log("Error Occurred : "+err.message);
+            setLoading(false);
+        })
+    }
     const values = {
         signup: signup,
-        login:login,
+        studentLogin:studentLogin,
         logout:logout,
         authenticated:authenticated,
         authenticateFun:authenticateFun,
@@ -117,7 +244,13 @@ export default function AuthContextProvider({children}){
         sendLeaveLetter:sendLeaveLetter,
         sentLetter:sentLetter,
         getHomeWorkByClassName:getHomeWorkByClassName,
-        homeWorksArr:homeWorksArr
+        homeWorksArr:homeWorksArr,
+        facultySignup:facultySignup,
+        facultyLogin:facultyLogin,
+        currentLoggedInStatus:currentLoggedInStatus,
+        currentLoggedInId:currentLoggedInId,
+        updateCurrentStatus:updateCurrentStatus,
+        getPersonalDetails:getPersonalDetails
     }
     return(<AuthContext.Provider value={values}>{children}</AuthContext.Provider>)
 }

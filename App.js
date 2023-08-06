@@ -16,6 +16,7 @@ import HomeWork from './screens/Dashboard/HomeWork';
 import Letter from './screens/Dashboard/Letter';
 import Notes from './screens/Dashboard/Notes';
 import HomeWorkHandler from './screens/Dashboard/HomeWorkHandler';
+import FacultyDashboard from "./screens/TeacherDashboard/Dashboard";
 function AuthStack(){
   return(<>
       <Stack.Navigator>
@@ -45,14 +46,24 @@ function Authenticated(){
 
   </>)
 }
-
+function TeacherComponent(){
+  return(<>
+    <BottomTab.Navigator>
+      <BottomTab.Screen name = "Home" component={FacultyDashboard} options={ { tabBarIcon : ()=><AntDesign name = "home" size={24} color="black"/>}}/>
+    </BottomTab.Navigator>
+  </>)
+}
   async function isAuthenticatedFun(){
     const authContext = useContext(AuthContext);
   let isAuth = await AsyncStorage.getItem("isAuthenticated");
+  let currentRole = await AsyncStorage.getItem("role");
+  let currentStudentId = await AsyncStorage.getItem("AdmissionNumber");
   console.log("isAuthKey :",isAuth);
-
+  console.log("role",currentRole);
+  console.log("Id",currentStudentId);
   if(isAuth!==null){
     authContext.authenticateFun();
+    authContext.updateCurrentStatus(currentRole,currentStudentId);
   }else{
     authContext.removeAuthenticate();
   }
@@ -62,8 +73,10 @@ function NavigationComponent(){
   isAuthenticatedFun();
   return(
 <NavigationContainer>
-     {!authContext.authenticated && <AuthStack/>}
-     {authContext.authenticated && <Authenticated/>}
+     {!authContext.authenticated  && <AuthStack/>}
+     {authContext.authenticated && authContext.currentLoggedInStatus === "student" && <Authenticated/>}
+     {authContext.authenticated && authContext.currentLoggedInStatus === "teacher" && <TeacherComponent/>}
+     
       </NavigationContainer>
   )
 }
