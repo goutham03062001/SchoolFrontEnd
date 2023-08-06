@@ -1,0 +1,64 @@
+import { StyleSheet } from "react-native";
+
+export const styles = StyleSheet.create({
+    rootContainer:{
+        width:"100%",
+        height:"100%",
+        padding:5
+    },
+    topDiv:{
+        width:"100%",
+        height:210,
+        borderTopStartRadius:20,
+        borderBottomEndRadius:80,
+        zIndex:-100,
+        justifyContent:'flex-start',
+        alignItems:'flex-start',
+        padding:8
+    },
+    personalCardStyle:{
+        top:5,
+        borderRadius:8,
+        width:"100%",
+        height:"90%",
+        backgroundColor:"#73b2ff",
+        elevation:5
+    },
+    personalCardContent:{
+        flexDirection:"column",
+        justifyContent:"flex-start",
+        alignItems:"center",
+        gap:10
+    },
+    bottomDiv:{
+        width:"99%",
+        height:"100%",
+        justifyContent:"flex-start",
+        alignItems:"center",
+        padding:5,
+        gap:20,
+        top:35
+    },
+    bottomCard:{
+        width:160,
+        height:160,
+        backgroundColor:"white",
+        padding:20,
+        elevation:10,
+        
+    },
+    firstRow:{
+        width:"100%",
+        flexDirection:"row",
+        justifyContent:"space-between",
+        alignItems:"center",
+        gap:10
+    },
+    secondRow:{
+        width:"100%",
+        flexDirection:"row",
+        justifyContent:"space-between",
+        alignItems:"center",
+        gap:10
+    }
+})
