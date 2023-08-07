@@ -22,7 +22,12 @@ export const AuthContext = createContext({
     currentLoggedInStatus : "",
     currentLoggedInId:"",
     updateCurrentStatus : (role)=>{},
-    getPersonalDetails : (id)=>{}
+    getPersonalDetails : (id)=>{},
+    currentLoggedInFaculty : {},
+    getCurrentFacultyDetails : (id)=>{},
+    getLeaveLettersByClassName:(className)=>{},
+    currentLeaveLettersByClassName : [{}],
+    postHomeWork:(className,subjectName,description)=>{},
 })
 
 export default function AuthContextProvider({children}){
@@ -34,7 +39,8 @@ export default function AuthContextProvider({children}){
     const[homeWorksArr,setHomeWorksArr] = useState([{}]);
     const[currentLoggedInStatus,setCurrentLoggedInStatus] = useState("");
     const[currentLoggedInId,setCurrentLoggedInId] = useState("");
-
+    const[currentLoggedInFaculty,setCurrentLoggedInFaculty] = useState({});
+    const[currentLeaveLettersByClassName,setCurrentLeaveLettersByClassName] = useState([{}]);
     async function updateCurrentStatus(role,id){
        let currRole =  await AsyncStorage.getItem("role");
         setCurrentLoggedInStatus(currRole);
@@ -115,6 +121,9 @@ export default function AuthContextProvider({children}){
         let allKeys = await AsyncStorage.getAllKeys();
         console.log("All stored keys : ",allKeys);
         await AsyncStorage.removeItem("isAuthenticated");
+        await AsyncStorage.removeItem("role");
+        await AsyncStorage.removeItem("AdmissionNumber");
+        await AsyncStorage.removeItem("FacultyMobileNumber");
 
        return setAuthenticated(false);
     }
@@ -202,7 +211,6 @@ export default function AuthContextProvider({children}){
         const body = {mobile,password}
         const response = await axios.post(BACKEND_API_URL+"/TeacherRoutes/auth/login",body,config).then((data)=>{
             console.log(data.data);
-
             if(data.data === "You are not registered"){
                 setLoading(false);
                 return Alert.alert("Login Failed","You are not registered");
@@ -210,10 +218,15 @@ export default function AuthContextProvider({children}){
                 setLoading(false);
                 return Alert.alert("Login Failed",data.data);
             }
-            if(data.data.mobile!==null){
+            if(data.data.Name){
+                console.log("Name : "+data.data);
+                console.log("Current Faculty Details ");
+                console.log(data.data);
                 setLoading(false);
                 let idx = 1;
-                setLocalItem(role,mobile,idx)
+                setLocalItem(role,mobile,idx);
+            setCurrentLoggedInFaculty(data.data);
+
                 return Alert.alert("Login Success","You are now logged in!")
             }
            
@@ -231,6 +244,54 @@ export default function AuthContextProvider({children}){
             setLoading(false);
         })
     }
+    async function getCurrentFacultyDetails(mobile){
+        setLoading(true);
+        console.log("Current Mobile : "+mobile);
+        const response = await axios.get(BACKEND_API_URL+"/TeacherRoutes/auth/get/"+mobile).then((data)=>{
+            console.log(data.data);
+            setLoading(false);
+            setCurrentLoggedInFaculty(data.data);
+        }).catch((err)=>{
+            console.log(err.message);
+            setLoading(false);
+        })
+    }
+
+    async function getLeaveLettersByClassName(className){
+        setLoading(true);
+        const response = await axios.get(BACKEND_API_URL+"/TeacherRoutes/leaveLetters/"+className).then((data)=>{
+            console.log(data.data);
+            setLoading(false);
+            setCurrentLeaveLettersByClassName(data.data);
+        }).catch((err)=>{
+            console.log('Error Occurred : '+err.message);
+            setLoading(false);
+        })
+    }
+    
+    async function postHomeWork(className,subjectName,description){
+        setLoading(true);
+        console.log("response");
+
+        const config = {
+            headers:{
+                "Content-Type":"application/json"
+            }
+        }
+        const body = {description}
+        const response = await axios.post(BACKEND_API_URL+"/TeacherRoutes/homework/newHomeWork/className/"+className+"/subject/"+subjectName,body,config).then((data)=>{
+            console.log("response");
+            if(data.data._id!==null){
+                console.log(data.data);
+                setLoading(false);
+                return Alert.alert("Home Work Sent Successfully!","Home work sent to all your class students");
+            }
+        }).catch((err)=>{
+            console.log("Error Occurred : "+err.message);
+            setLoading(false);
+        })
+    }
+
     const values = {
         signup: signup,
         studentLogin:studentLogin,
@@ -250,7 +311,12 @@ export default function AuthContextProvider({children}){
         currentLoggedInStatus:currentLoggedInStatus,
         currentLoggedInId:currentLoggedInId,
         updateCurrentStatus:updateCurrentStatus,
-        getPersonalDetails:getPersonalDetails
+        getPersonalDetails:getPersonalDetails,
+        currentLoggedInFaculty:currentLoggedInFaculty,
+        getCurrentFacultyDetails:getCurrentFacultyDetails,
+        getLeaveLettersByClassName:getLeaveLettersByClassName,
+        currentLeaveLettersByClassName:currentLeaveLettersByClassName,
+        postHomeWork:postHomeWork
     }
     return(<AuthContext.Provider value={values}>{children}</AuthContext.Provider>)
 }

@@ -12,7 +12,7 @@ const HomeWork = () => {
 
   useEffect(() => {
     console.log("Getting home works by class Name");
-    authContext.getHomeWorkByClassName(currClass +1);
+    authContext.getHomeWorkByClassName(currClass);
     console.log(authContext.homeWorksArr);
   }, [currClass]);
 
@@ -72,19 +72,17 @@ const HomeWork = () => {
               </>
             ) : (
               <>
-                <Card>
-                    <Card.Content>
+                
+                    
                     <View
-                  style={{ justifyContent: "center", alignItems: "center" }}
+                  style={{ flex : 1, justifyContent: "center", alignItems: "center" }}
                 >
                   <Image
                     source={require("../../assets/empty.png")}
-                    style={{ width: 200, height: 200 }}
+                    style={{ width: 100, height: 100 }}
                   />
                   <Text>No home works available now</Text>
                 </View>
-                    </Card.Content>
-                </Card>
               </>
             )}
           

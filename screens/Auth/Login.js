@@ -69,7 +69,9 @@ const Login = () => {
              </>}
             
             <View style={styles.btn}>
-            <Button title="Login" style={styles.btn} onPress = {loginHandler}/>
+            {
+          authContext.loading ? <Button title="Loading...." style={styles.btn} /> : <Button title="Login" style={styles.btn} onPress={loginHandler} />
+        }
             </View>
 
             <View style={{marginVertical:18,flexDirection:"row", justifyContent:"space-around",alignItems:"center"}}>

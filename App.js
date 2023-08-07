@@ -12,11 +12,14 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 const Stack = createStackNavigator();
 const BottomTab = createBottomTabNavigator();
 import { AntDesign,Foundation, SimpleLineIcons , MaterialIcons} from '@expo/vector-icons'; 
+import { Button } from 'react-native-paper';
 import HomeWork from './screens/Dashboard/HomeWork';
 import Letter from './screens/Dashboard/Letter';
 import Notes from './screens/Dashboard/Notes';
 import HomeWorkHandler from './screens/Dashboard/HomeWorkHandler';
 import FacultyDashboard from "./screens/TeacherDashboard/Dashboard";
+import FacultyHomeWork from "./screens/TeacherDashboard/HomeWork"
+import FacultyLeaveLetter from "./screens/TeacherDashboard/LeaveLetters"
 function AuthStack(){
   return(<>
       <Stack.Navigator>
@@ -28,7 +31,7 @@ function AuthStack(){
 function Authenticated(){
   return(<>
          <BottomTab.Navigator>
-          <BottomTab.Screen name = "dashboards" component={DashboardHandler}
+          <BottomTab.Screen name = "dashboard" component={DashboardHandler}
           options={{ tabBarIcon : ()=><AntDesign name="home" size={24} color="black" /> , headerShown:false}}
           />
           <BottomTab.Screen name = "Quiz" component={Notes}
@@ -47,9 +50,16 @@ function Authenticated(){
   </>)
 }
 function TeacherComponent(){
+  const authContext = useContext(AuthContext);
+
   return(<>
     <BottomTab.Navigator>
-      <BottomTab.Screen name = "Home" component={FacultyDashboard} options={ { tabBarIcon : ()=><AntDesign name = "home" size={24} color="black"/>}}/>
+      <BottomTab.Screen name = "DASHBOARD" component={FacultyDashboard} options={ { tabBarIcon : ()=><AntDesign name = "home" size={24} color="black"/>,
+      headerRight : ()=><Button onPress = {authContext.logout}>Logout</Button>,title:"Dashboard",headerTitleStyle:{fontSize:18}}}/>
+      <BottomTab.Screen name = "HOME WORK" component={FacultyHomeWork} options={ { tabBarIcon : ()=><Image source={{uri : "https://img.icons8.com/ios/50/homework.png"}} style={{width:25,height:28}}/>,
+      title:"Home Work",headerTitleStyle:{fontSize:18}}}/>
+      <BottomTab.Screen name = "LEAVE LETTERS" component={FacultyLeaveLetter} options={ { tabBarIcon : ()=><Image source = {{uri : "https://img.icons8.com/ios/50/secured-letter--v1.png"}} style={{width:25,height:23}}/>,
+      title:"Leave Letters",headerTitleStyle:{fontSize:18}}}/>
     </BottomTab.Navigator>
   </>)
 }
@@ -58,12 +68,19 @@ function TeacherComponent(){
   let isAuth = await AsyncStorage.getItem("isAuthenticated");
   let currentRole = await AsyncStorage.getItem("role");
   let currentStudentId = await AsyncStorage.getItem("AdmissionNumber");
+  let currFacMobile = await AsyncStorage.getItem("FacultyMobileNumber");
   console.log("isAuthKey :",isAuth);
   console.log("role",currentRole);
   console.log("Id",currentStudentId);
   if(isAuth!==null){
     authContext.authenticateFun();
+    if(currentRole === "student"){
     authContext.updateCurrentStatus(currentRole,currentStudentId);
+
+    }if(currentRole==="teacher"){
+    authContext.updateCurrentStatus(currentRole,currFacMobile);
+      
+    }
   }else{
     authContext.removeAuthenticate();
   }
