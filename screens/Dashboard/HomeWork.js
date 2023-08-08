@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from "react";
 import { View, StyleSheet, Text, Image,Pressable, Alert,ScrollView } from "react-native";
-import { Card, Button } from "react-native-paper";
+import { Card, Button, HelperText } from "react-native-paper";
 import { AuthContext } from "../../context/AuthContext";
 import { useNavigation } from "@react-navigation/native";
 const HomeWork = () => {
@@ -48,7 +48,10 @@ const HomeWork = () => {
                                        {item && item.subject.map((index,key=index._id)=>(
                                         <>
                                            <View  key = {key} style={{width:"100%",flexDirection:"row",justifyContent:'space-around',alignItems:'center'}}>
+                                           <View style={{justifyContent:"flex-start",alignItems:"flex-start",gap:5}}>
                                            <Text>Subject - {index.subjectName}</Text>
+                                           <Text style={{fontSize:10}}>{new Date(index.date).toDateString()}</Text>
+                                           </View>
                                             <Pressable style={{width:"55%"}}
                                             onPress = {(e)=>{viewHomeWorkHandler(index)}}>
                                             <Button mode="contained-tonal" style={{width:"100%",borderRadius:10,backgroundColor:"#9370db"}}><Text style={{color:"white"}}

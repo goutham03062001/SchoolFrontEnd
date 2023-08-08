@@ -8,7 +8,10 @@ import Dashboard from './Dashboard';
 import Attendance from "./Attendance";
 import FeeDetails from './FeeDetails';
 import Results from './Results';
+import PersonalDetails from "./PersonalDetails";
+import ViewResults from './ViewResults';
 import { AuthContext } from '../../context/AuthContext';
+
 const DashboardHandler = () => {
     const authCtx = useContext(AuthContext);
   return (
@@ -19,6 +22,8 @@ const DashboardHandler = () => {
         <Stack.Screen name = "FeeDetails" component={FeeDetails}/>
         <Stack.Screen name = "Attendance" component={Attendance}/>
         <Stack.Screen name = "Results" component={Results}/>
+        <Stack.Screen name = "Personal Details" component={PersonalDetails}/>
+        <Stack.Screen name = "View Results" component={ViewResults}/>
     </Stack.Navigator>
   )
 }

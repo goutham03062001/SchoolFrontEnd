@@ -4,10 +4,6 @@ import { Card, List } from "react-native-paper";
 const PersonalDetails = ({ route }) => {
   const { data } = route.params;
 
-  // {"AadharNumber": "764822410741", "AdmissionDate": "2015-06-12T00:00:00.000Z",
-  // "AdmissionNumber": 544, "Dob": "2013-05-26T00:00:00.000Z",
-  //  "FatherName": "Naveen Kumar", "MobileNumber": "9849570243",
-  //   "MotherName": "Manohara", "Name": "A. Rakshitha", "_id": "64b57a9dc887d70798cd5d5d", "className": 9}
 
   const [expanded, setExpanded] = React.useState(false);
 

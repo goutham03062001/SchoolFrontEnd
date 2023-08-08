@@ -28,6 +28,8 @@ export const AuthContext = createContext({
     getLeaveLettersByClassName:(className)=>{},
     currentLeaveLettersByClassName : [{}],
     postHomeWork:(className,subjectName,description)=>{},
+    getExamMarks : (examName,className,admissionId,studentName)=>{},
+    currentStudentMarks : {}
 })
 
 export default function AuthContextProvider({children}){
@@ -41,6 +43,7 @@ export default function AuthContextProvider({children}){
     const[currentLoggedInId,setCurrentLoggedInId] = useState("");
     const[currentLoggedInFaculty,setCurrentLoggedInFaculty] = useState({});
     const[currentLeaveLettersByClassName,setCurrentLeaveLettersByClassName] = useState([{}]);
+    const[currentStudentMarks,setCurrentStudentMarks] = useState({});
     async function updateCurrentStatus(role,id){
        let currRole =  await AsyncStorage.getItem("role");
         setCurrentLoggedInStatus(currRole);
@@ -292,6 +295,18 @@ export default function AuthContextProvider({children}){
         })
     }
 
+    async function getExamMarks(examName,className,admissionId,studentName){
+        setLoading(true);
+        const response = await axios.get(BACKEND_API_URL+"/Exams/"+examName+"/"+className+"/"+admissionId+"/"+studentName+"/get/marks").then((data)=>{
+            console.log("STUDENT EXAM MARKS BY ID");
+            console.log(data.data);
+            setCurrentStudentMarks(data.data);
+            setLoading(false);
+        }).catch((err)=>{
+            console.log("Error Occurred : "+err.message);
+            setLoading(false);
+        })
+    }
     const values = {
         signup: signup,
         studentLogin:studentLogin,
@@ -316,7 +331,9 @@ export default function AuthContextProvider({children}){
         getCurrentFacultyDetails:getCurrentFacultyDetails,
         getLeaveLettersByClassName:getLeaveLettersByClassName,
         currentLeaveLettersByClassName:currentLeaveLettersByClassName,
-        postHomeWork:postHomeWork
+        postHomeWork:postHomeWork,
+        getExamMarks:getExamMarks,
+        currentStudentMarks:currentStudentMarks
     }
     return(<AuthContext.Provider value={values}>{children}</AuthContext.Provider>)
 }

@@ -30,10 +30,15 @@ const Dashboard = () => {
     function ResultsNavigation(){
         navigation.navigate("Results");
     }
-    
+
+    function viewPersonalDetailsHandler(){
+        navigation.navigate("Personal Details",{data : authCtx.currentLoggedInStudent})
+    }
+
     return (
         <View style={styles.rootContainer}>
             <View style = {styles.topDiv}>
+                <Pressable onPress = {viewPersonalDetailsHandler} style = {{width:"100%"}}>
                 <Card style = {styles.personalCardStyle}>
                     <Card.Content style = {styles.personalCardContent}>
                     <Image source={{ uri : "https://img.icons8.com/color/96/circled-user-male-skin-type-1-2--v1.png"}} style={{ width:80,height:80}}/>
@@ -56,6 +61,7 @@ const Dashboard = () => {
 
                     </Card.Content>
                 </Card>
+                </Pressable>
             </View>
 
             {/* bottomDiv */}

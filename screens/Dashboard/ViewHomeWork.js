@@ -8,9 +8,14 @@ const ViewHomeWork = ({route}) => {
       {/* <Text>ViewHomeWork</Text> */}
      {data && <>
         <Card>
-        <Card.Content style = {{minHeight:200,justifyContent:"center",alignItems:"flex-start",gap:20}}>
-            <Text>Subject Name - {data.subjectName}</Text>
-            <Text>Home work - {data.description}</Text>
+        <Card.Title
+          title = {`Subject - ${data.subjectName}`}
+          subtitle={`Date - ${new Date(data.date).toDateString()}`}
+        />
+        <Card.Content style = {{minHeight:100,justifyContent:"center",alignItems:"flex-start",marginTop:30}}>
+           
+            <Text style={{lineHeight:30,fontSize:16}}> {data.description}</Text>
+            
         </Card.Content>
       </Card>
      </>}
