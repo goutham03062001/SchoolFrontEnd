@@ -19,7 +19,8 @@ import Notes from './screens/Dashboard/Notes';
 import HomeWorkHandler from './screens/Dashboard/HomeWorkHandler';
 import FacultyDashboard from "./screens/TeacherDashboard/Dashboard";
 import FacultyHomeWork from "./screens/TeacherDashboard/HomeWork"
-import FacultyLeaveLetter from "./screens/TeacherDashboard/LeaveLetters"
+import FacultyLeaveLetter from "./screens/TeacherDashboard/LeaveLetters";
+import TeacherDashboardHandler from './screens/TeacherDashboard/TeacherDashboardHandler';
 function AuthStack(){
   return(<>
       <Stack.Navigator>
@@ -54,7 +55,7 @@ function TeacherComponent(){
 
   return(<>
     <BottomTab.Navigator>
-      <BottomTab.Screen name = "DASHBOARD" component={FacultyDashboard} options={ { tabBarIcon : ()=><AntDesign name = "home" size={24} color="black"/>,
+      <BottomTab.Screen name = "DASHBOARD" component={TeacherDashboardHandler} options={ { tabBarIcon : ()=><AntDesign name = "home" size={24} color="black"/>,
       headerRight : ()=><Button onPress = {authContext.logout}>Logout</Button>,title:"Dashboard",headerTitleStyle:{fontSize:18}}}/>
       <BottomTab.Screen name = "HOME WORK" component={FacultyHomeWork} options={ { tabBarIcon : ()=><Image source={{uri : "https://img.icons8.com/ios/50/homework.png"}} style={{width:25,height:28}}/>,
       title:"Home Work",headerTitleStyle:{fontSize:18}}}/>
@@ -74,10 +75,10 @@ function TeacherComponent(){
   console.log("Id",currentStudentId);
   if(isAuth!==null){
     authContext.authenticateFun();
-    if(currentRole === "student"){
+    if(currentRole === "Student"){
     authContext.updateCurrentStatus(currentRole,currentStudentId);
 
-    }if(currentRole==="teacher"){
+    }if(currentRole==="Teacher"){
     authContext.updateCurrentStatus(currentRole,currFacMobile);
       
     }
@@ -91,8 +92,8 @@ function NavigationComponent(){
   return(
 <NavigationContainer>
      {!authContext.authenticated  && <AuthStack/>}
-     {authContext.authenticated && authContext.currentLoggedInStatus === "student" && <Authenticated/>}
-     {authContext.authenticated && authContext.currentLoggedInStatus === "teacher" && <TeacherComponent/>}
+     {authContext.authenticated && authContext.currentLoggedInStatus === "Student" && <Authenticated/>}
+     {authContext.authenticated && authContext.currentLoggedInStatus === "Teacher" && <TeacherComponent/>}
      
       </NavigationContainer>
   )

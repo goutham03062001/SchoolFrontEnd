@@ -1,23 +1,27 @@
-import { View, Text,StyleSheet,Image,Alert } from 'react-native'
+import { View, Text,StyleSheet,Image,Alert, Pressable } from 'react-native'
 import React,{useContext,useEffect} from 'react'
 import { AuthContext } from '../../context/AuthContext';
 import {Card,Button,List} from "react-native-paper";
 import AsyncStorage from '@react-native-async-storage/async-storage';
-
+import { useNavigation } from '@react-navigation/native';
 
 const Dashboard = () => {
     const authContext = useContext(AuthContext);
     // for(let i =0; i<authContext.currentLoggedInFaculty.teachingClasses.length; i++){
     //   classes.push(authContext.currentLoggedInFaculty.teachingClasses[i]);
     // }
-   
+   const navigation = useNavigation();
    useEffect(()=>{
     async function loadFun(){
       const currFacMobile = await AsyncStorage.getItem("FacultyMobileNumber");
       authContext.getCurrentFacultyDetails(currFacMobile);
     }
     loadFun();
-   },[])
+   },[]);
+   function ViewStudentDetailsHandler(){
+
+    navigation.navigate("Student Details");
+   }
   return (
     <View style = {styles.rootContainer}>
       {/* <Text>Dashboard</Text>
@@ -61,7 +65,7 @@ const Dashboard = () => {
         <List.Accordion title = {
             authContext.currentLoggedInFaculty && (<Text>View  Class {authContext.currentLoggedInFaculty.classTeacher} Details </Text>)
           }> 
-          <List.Item title= { <Button mode = "elevated" style={{borderRadius:0}}>Click Here To Student Details </Button> }/>
+         <List.Item title = {<Pressable><Button mode="contained-tonal" onPress = {ViewStudentDetailsHandler}>View Class - {authContext.currentLoggedInFaculty.classTeacher} Details</Button></Pressable>}/>
         </List.Accordion>
         </List.Section>
     </View>

@@ -9,20 +9,20 @@ const Login = () => {
     const[mobile,setMobile] = useState('');
     const[admissionNumber,setAdmissionNumber] = useState('');
     const[password,setPassword] = useState('');
-  const [role, setRole] = useState("student");
+  const [role, setRole] = useState("Student");
 
     const navigation = useNavigation();
     const authContext = useContext(AuthContext);
 
    async function loginHandler(){
-       if(role==="student"){
+       if(role==="Student"){
         if( admissionNumber === "" || password === ""){
             return Alert.alert("Required All Fields","In order to login, you must fill all the details");
         }else{
             authContext.studentLogin(admissionNumber,password,role);
         }
        }
-       if(role==="teacher" || role === "principal"){
+       if(role==="Teacher" || role === "Principal"){
         if(mobile === "" || password===""){
             return Alert.alert("Required All Fields","In order to login, you must fill all the details");
         }else{
@@ -44,11 +44,11 @@ const Login = () => {
         onValueChange={(itemValue, itemIndex) => setRole(itemValue)}
         selectedValue={role}
       >
-        <Picker.Item label="student" value="student" />
-        <Picker.Item label="teacher" value="teacher" />
-        <Picker.Item label="principal" value="principal" />
+        <Picker.Item label="Student" value="Student" />
+        <Picker.Item label="Teacher" value="Teacher" />
+        <Picker.Item label="Principal" value="Principal" />
       </Picker>
-             {role === "student" && <>
+             {role === "Student" && <>
              <TextInput placeholder='Enter your admission number' style = {styles.inputContainer}
                 onChangeText={ (e)=>{setAdmissionNumber(e)}}
             />
@@ -57,7 +57,7 @@ const Login = () => {
                 onChangeText={ (e)=>{setPassword(e)}}/>
            
              </>}
-             {(role === "teacher" || role==="principal") && <>
+             {(role === "Teacher" || role==="Principal") && <>
              <TextInput placeholder='Enter your mobile number' style = {styles.inputContainer}
                 onChangeText={ (e)=>{setMobile(e)}}
 

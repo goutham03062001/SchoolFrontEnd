@@ -8,13 +8,13 @@ const Signup = () => {
   const [mobile, setMobile] = useState("");
   const [AdmissionNumber, setAdmissionNumber] = useState("");
   const [password, setPassword] = useState("");
-  const [role, setRole] = useState("student");
+  const [role, setRole] = useState("Student");
   const navigation = useNavigation();
   const authContext = useContext(AuthContext);
 
   async function signupHandler() {
     console.log("Current Role : "+role);
-    if (role === "student") {
+    if (role === "Student") {
       if (        
         AdmissionNumber === "" ||
         password === ""
@@ -28,11 +28,11 @@ const Signup = () => {
         authContext.signup(AdmissionNumber,password,role);
       }
     } 
-    if(role==="teacher"){
+    if(role==="Teacher"){
       if(mobile === "" || password ===""){
         return Alert.alert(
           "Required All Fields",
-          "please fill all the details"
+          "please fill all the details" 
         );
       }else{
         //Faculty signup
@@ -56,12 +56,12 @@ const Signup = () => {
         onValueChange={(itemValue, itemIndex) => setRole(itemValue)}
         selectedValue={role}
       >
-        <Picker.Item label="student" value="student" />
-        <Picker.Item label="teacher" value="teacher" />
-        <Picker.Item label="principal" value="principal" />
+        <Picker.Item label="Student" value="Student" />
+        <Picker.Item label="Teacher" value="Teacher" />
+        <Picker.Item label="Principal" value="Principal" />
       </Picker>
      
-      {role === "student" && (
+      {role === "Student" && (
         <>
         <TextInput
           placeholder="Enter your admission number"
@@ -81,7 +81,7 @@ const Signup = () => {
         </>
       )}
      
-      {role === "teacher" && (<>
+      {role === "Teacher" && (<>
         <TextInput
           placeholder="Enter your mobile number"
           style={styles.inputContainer}
@@ -100,7 +100,7 @@ const Signup = () => {
       </>)}
 
 
-      {role === "principal" && (<>
+      {role === "Principal" && (<>
         <TextInput
           placeholder="Enter your mobile number"
           style={styles.inputContainer}
