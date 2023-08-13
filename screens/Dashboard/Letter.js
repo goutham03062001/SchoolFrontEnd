@@ -46,9 +46,12 @@ const Letter = () => {
 
             <Card>
               <Card.Content>
-                <TextInput placeholder='Enter the reason' mode='outlined'
+                <TextInput placeholder='Why do you want leave, write about reason here.' mode='outlined'
                     onChangeText={ (e)=> setReason(e)}
                     value={reason}
+                    multiline={true}
+                    style={{height:130}}
+
                 />
                 <TextInput placeholder='Enter from date ' mode='outlined'
                     onChangeText={ (e)=> setFromDate(e)}
@@ -75,7 +78,7 @@ const Letter = () => {
 
 const styles = StyleSheet.create({
     rootContainer:{
-        padding:7,
+        padding:1,
        
     }
 })

@@ -43,12 +43,16 @@ const Dashboard = () => {
             </>
             ))
         } */}
+        {authContext.loading ? <Text>Loading Details</Text> : <>
         {
           authContext.currentLoggedInFaculty && (<>
             <Text>{authContext.currentLoggedInFaculty.Name} | {authContext.currentLoggedInStatus}</Text>
             <Text>{authContext.currentLoggedInFaculty.mobile} | Class Teacher - {authContext.currentLoggedInFaculty.classTeacher}</Text>
           </>)
         }
+
+        </>}
+       
         </Card.Content>
       </Card>
 

@@ -1,99 +1,60 @@
-import { View, Text } from "react-native";
-import React, { useEffect } from "react";
+import { ScrollView, Text,StyleSheet} from "react-native";
+import React, { useEffect,useContext } from "react";
 import { DataTable } from "react-native-paper";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { AuthContext } from "../../context/AuthContext";
 const StudentDetails = () => {
+  const authContext = useContext(AuthContext);
+  useEffect(()=>{
+    async function getStudentDetailsHandler(){
+      const currentClassTeacher = authContext.currentLoggedInFaculty && authContext.currentLoggedInFaculty.classTeacher
+      authContext.getStudentDetailsByClassName(currentClassTeacher);
+
+    }
+    getStudentDetailsHandler();
+  },[]);
   return (
-    <View>
-      <DataTable>
-        <DataTable.Header>
-          <DataTable.Title><Text style={{color:"brown"}}>S.No.</Text></DataTable.Title>
-          <DataTable.Title><Text style={{color:"brown"}}>Name</Text></DataTable.Title>
-          <DataTable.Title><Text style={{color:"brown"}}>ID</Text></DataTable.Title>
-          <DataTable.Title><Text style={{color:"brown"}}>Mobile</Text></DataTable.Title>
-        </DataTable.Header>
+    <ScrollView horizontal={true}>
+      <DataTable style={styles.tableRow}>
+          <DataTable.Header style={styles.tableRow}>
+            <DataTable.Title style={{width:80}}><Text style={{color:"brown"}}>S.No</Text></DataTable.Title>
+            <DataTable.Title style={{width:180}}><Text style={{color:"brown"}}>Name</Text></DataTable.Title>
+            <DataTable.Title style={{width : 80}}><Text style={{color:"brown"}}>ID</Text></DataTable.Title>
+            <DataTable.Title style={{width:100}}><Text style={{color:"brown"}}>Mobile </Text></DataTable.Title>
+          </DataTable.Header>
+         
+          {authContext.currentLoggedInStudent && authContext.currentLoggedInStudent ? <>
+          {authContext.currentLoggedInStudent.map((item,key=item._id)=>(<>
+              {item && item.students && item.students.map((student)=>(<>
+                {student && (<>
+                  <DataTable.Row>
+                    <DataTable.Cell style={{width:50}}>
+                      <Text>{student && item.students.indexOf(student)+1}</Text>
+                    </DataTable.Cell>
+                    <DataTable.Cell style={{width:180}}>
+                      <Text>{student.Name}</Text>
+                    </DataTable.Cell>
+                    <DataTable.Cell style={{width : 65}}>
+                      <Text>{student.AdmissionNumber}</Text>
+                    </DataTable.Cell>
 
-        <DataTable.Row>
-          <DataTable.Cell>
-            <Text style={{color:"red"}}>1</Text>
-          </DataTable.Cell>
-          <DataTable.Cell>
-            <Text>Goutham</Text>
-          </DataTable.Cell>
-          <DataTable.Cell>
-            <Text>532</Text>
-          </DataTable.Cell>
-          <DataTable.Cell>
-            <Text>6300809076</Text>
-          </DataTable.Cell>
-        </DataTable.Row>
-
-
-        <DataTable.Row>
-          <DataTable.Cell>
-            <Text style={{color:"red"}}>2</Text>
-          </DataTable.Cell>
-          <DataTable.Cell>
-            <Text>ManiSai</Text>
-          </DataTable.Cell>
-          <DataTable.Cell>
-            <Text>532</Text>
-          </DataTable.Cell>
-          <DataTable.Cell>
-            <Text>6312345866</Text>
-          </DataTable.Cell>
-        </DataTable.Row>
-
-
-        <DataTable.Row>
-          <DataTable.Cell>
-            <Text style={{color:"red"}}>3</Text>
-          </DataTable.Cell>
-          <DataTable.Cell>
-            <Text>Anil</Text>
-          </DataTable.Cell>
-          <DataTable.Cell>
-            <Text>533</Text>
-          </DataTable.Cell>
-          <DataTable.Cell>
-            <Text>8794567812</Text>
-          </DataTable.Cell>
-        </DataTable.Row>
-
-
-        <DataTable.Row>
-          <DataTable.Cell>
-            <Text style={{color:"red"}}>4</Text>
-          </DataTable.Cell>
-          <DataTable.Cell>
-            <Text>Nikhil</Text>
-          </DataTable.Cell>
-          <DataTable.Cell>
-            <Text>534</Text>
-          </DataTable.Cell>
-          <DataTable.Cell>
-            <Text>9988546120</Text>
-          </DataTable.Cell>
-        </DataTable.Row>
-
-        <DataTable.Row>
-          <DataTable.Cell>
-            <Text style={{color:"red"}}>5</Text>
-          </DataTable.Cell>
-          <DataTable.Cell>
-            <Text>Sai Krishna</Text>
-          </DataTable.Cell>
-          <DataTable.Cell>
-            <Text>535</Text>
-          </DataTable.Cell>
-          <DataTable.Cell>
-            <Text>9988235120</Text>
-          </DataTable.Cell>
-        </DataTable.Row>
-
-        
-      </DataTable>
-    </View>
+                    <DataTable.Cell style={{width:90}}>
+                      <Text>{student.MobileNumber === "" ? "NA" : student.MobileNumber}</Text>
+                    </DataTable.Cell>
+                  </DataTable.Row>
+                </>)}
+              </>))}
+          </>))}
+        </> : <></>}
+        </DataTable>
+    </ScrollView>
   );
 };
+
+const styles = StyleSheet.create({
+
+ 
+ 
+});
 
 export default StudentDetails;

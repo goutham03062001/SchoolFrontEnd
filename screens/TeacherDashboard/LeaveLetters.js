@@ -1,7 +1,7 @@
 import { View, Text,StyleSheet } from 'react-native'
 import React,{useEffect,useContext,useState} from 'react'
 import { AuthContext } from '../../context/AuthContext';
-import { Card } from 'react-native-paper';
+import { Card,Divider,List } from 'react-native-paper';
 import { ScrollView } from 'react-native-gesture-handler';
 const LeaveLetters = () => {
   const authContext = useContext(AuthContext);
@@ -23,26 +23,20 @@ const LeaveLetters = () => {
       { authContext.currentLeaveLettersByClassName && authContext.currentLeaveLettersByClassName.map((letter)=>(<>
         <>
           <Card style = {{backgroundColor:"white", borderRadius:0,elevation:5,padding:5}}>
-            <Card.Content style = {{gap:18,flexDirection:"row",justifyContent:"space-around",alignItems:"center"}}>
-            <View style = {{gap:20}}>
-              <Text style = {{color:"blue"}}>Student Id  </Text>
-              <Text style = {{color:"green"}}>Reason  </Text>
-              <Text style = {{color:"red"}}>From  </Text>
-              <Text style = {{color:"orange"}}>To </Text>
-            </View>
-            <View style = {{gap:20}}>
-              <Text>-</Text>
-              <Text>-</Text>
-              <Text>-</Text>
-              <Text>-</Text>
-            </View>
-            <View style = {{gap:20}}>
-              <Text style = {{color:"blue"}}>{letter.AdmissionNumber}</Text>
-              <Text style={{color:"green"}}>{letter.reason}</Text>
-              <Text style = {{color:"red"}}>{letter.from}</Text>
-              <Text style = {{color:"orange"}}>{letter.to}</Text>
-            </View>
-            </Card.Content>
+            <List.Section>
+              
+              <List.Accordion title={`View Letter From ${letter.AdmissionNumber}`}>
+                <View style={{gap:19,paddingLeft:15}}>
+                <Text style={{lineHeight:30}}>Reason - {letter.reason}</Text>
+                <Divider/>
+
+                <Text>From - {letter.from}</Text>
+                <Divider/>
+
+                <Text>To - {letter.to}</Text>
+                </View>
+              </List.Accordion>
+            </List.Section>
           </Card>
         </>
       </>))}

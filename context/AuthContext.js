@@ -29,7 +29,8 @@ export const AuthContext = createContext({
     currentLeaveLettersByClassName : [{}],
     postHomeWork:(className,subjectName,description)=>{},
     getExamMarks : (examName,className,admissionId,studentName)=>{},
-    currentStudentMarks : {}
+    currentStudentMarks : {},
+    getStudentDetailsByClassName: (className)=>{}
 })
 
 export default function AuthContextProvider({children}){
@@ -295,6 +296,16 @@ export default function AuthContextProvider({children}){
         })
     }
 
+    async function getStudentDetailsByClassName(className){ 
+        console.log("Getting Student Details By Class Name");
+        setLoading(true);
+        const response = await axios.get(BACKEND_API_URL+"/TeacherRoutes/classDetails/"+className).then((data)=>{
+            console.log("Current Class Students Details : ");
+            setCurrStudentDetails(data.data); //CurrentStudentDetails 
+            console.log(data.data);
+        }).catch((error)=>{console.log("Error Occurred : "+error.message)});
+    }
+    
     async function getExamMarks(examName,className,admissionId,studentName){
         setLoading(true);
         const response = await axios.get(BACKEND_API_URL+"/Exams/"+examName+"/"+className+"/"+admissionId+"/"+studentName+"/get/marks").then((data)=>{
@@ -333,7 +344,8 @@ export default function AuthContextProvider({children}){
         currentLeaveLettersByClassName:currentLeaveLettersByClassName,
         postHomeWork:postHomeWork,
         getExamMarks:getExamMarks,
-        currentStudentMarks:currentStudentMarks
+        currentStudentMarks:currentStudentMarks,
+        getStudentDetailsByClassName:getStudentDetailsByClassName
     }
     return(<AuthContext.Provider value={values}>{children}</AuthContext.Provider>)
 }
