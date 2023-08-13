@@ -8,7 +8,7 @@ function CardComponent({ month, percentage, d, p, a }) {
       <Card style={{ marginTop: 6 }}>
         
         <Card.Content>
-          <Text>Your Monthly Attendance Display Here.</Text>
+          <Text>Your Monthly Attendance Display Will Here.</Text>
         </Card.Content>
       </Card>
     </>
