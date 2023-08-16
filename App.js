@@ -35,8 +35,9 @@ function Authenticated(){
           <BottomTab.Screen name = "dashboard" component={DashboardHandler}
           options={{ tabBarIcon : ()=><AntDesign name="home" size={24} color="black" /> , headerShown:false}}
           />
-          <BottomTab.Screen name = "Quiz" component={Notes}
-            options={{ tabBarIcon : ()=><Image source={{uri : "https://img.icons8.com/ios/50/quiz.png"}} style={{width:25,height:28}}/>}}
+          <BottomTab.Screen name = "Experiments" component={Notes}
+            options={{ tabBarIcon : ()=><Image source={{uri : "https://img.icons8.com/ios/50/test-tube.png"}} style={{width:25,height:28}}/>,
+            headerShown:false}}
           />
           <BottomTab.Screen name = "Leave Letter" component={Letter}
             options={{ tabBarIcon : ()=><Image source = {{uri : "https://img.icons8.com/ios/50/secured-letter--v1.png"}} style={{width:25,height:23}}/>}}
