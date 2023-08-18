@@ -17,8 +17,6 @@ import MathsLab from "./Experiments/MathsLab";
 const Stack = createStackNavigator();
 import { useNavigation } from "@react-navigation/native";
 import ViewLabExperiments from "./Experiments/ViewLabExperiments";
-
-
 function DisplaySubjectsHandler() {
   const navigation = useNavigation();
   function MathsSubjectHandler(){
@@ -84,19 +82,7 @@ function DisplaySubjectsHandler() {
                 justifyContent: "space-between",
               }}
             >
-              <View>
-                <Text>Total Exp - 10</Text>
-              </View>
-              <View
-                style={{
-                  flexDirection: "row",
-                  justifyContent: "center",
-                  alignItems: "center",
-                }}
-              >
-                <Text>Completed - 7 </Text>
-                <MaterialIcons name="done" size={20} color="green" />
-              </View>
+             
             </View>
           </Card.Content>
         </Card>
@@ -104,11 +90,11 @@ function DisplaySubjectsHandler() {
 
         <Pressable android_ripple={{ color: "#ccc" }}
         onPress = {BiologySubjectHandler}>
-        <Card style={{ height: 300 }}>
+        <Card style={{ height: 250 }}>
           <Card.Content>
             <Image
               source={require("../../assets/Biology.jpeg")}
-              style={{ width: "99%", height: "85%" }}
+              style={{ width: "99%", height: "95%" }}
             />
             <View
               style={{
@@ -117,19 +103,7 @@ function DisplaySubjectsHandler() {
                 justifyContent: "space-between",
               }}
             >
-              <View>
-                <Text>Total Exp - 10</Text>
-              </View>
-              <View
-                style={{
-                  flexDirection: "row",
-                  justifyContent: "center",
-                  alignItems: "center",
-                }}
-              >
-                <Text>Completed - 1 </Text>
-                <MaterialIcons name="done" size={20} color="green" />
-              </View>
+              
             </View>
           </Card.Content>
         </Card>
@@ -166,7 +140,7 @@ const styles = StyleSheet.create({
     marginTop:50
   },
   cardStyle: {
-    height: 250,
+    height: 210,
     paddingTop: 15,
   },
 });
