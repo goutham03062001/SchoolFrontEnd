@@ -1,8 +1,8 @@
 {
   "expo": {
     "name": "Triveni High School",
-    "slug": "Triveni High School",
-    "version": "3.0.0",
+    "slug": "Testapp",
+    "version": "2.0.11",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
