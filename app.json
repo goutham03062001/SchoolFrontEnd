@@ -2,7 +2,7 @@
   "expo": {
     "name": "Triveni High School",
     "slug": "Testapp",
-    "version": "2.0.11",
+    "version": "3.0.1",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
@@ -17,6 +17,14 @@
     "ios": {
       "supportsTablet": true
     },
+    "plugins": [
+      [
+        "expo-screen-orientation",
+        {
+          "initialOrientation": "DEFAULT"
+        }
+      ]
+    ],
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",

@@ -13,22 +13,46 @@ const BiologyLab = () => {
       <View>
         <List.Section title="Biology" style={{ gap: 5 }}>
           <List.Accordion title="Chapter -1   Nutrition">
-            {/* <List.Item
-              title="Human Brain"
+            <List.Item
+              title="Chloroplast - 3D View"
               onPress={() =>
                 LabHandler(
-                  "https://sketchfab.com/models/7a27c17fd6c0488bb31ab093236a47fb/embed"
+                  "https://sketchfab.com/3d-models/chloroplast-30bc55b2f763415f9222f876c564be97/embed"
                 )
               }
             />
             <List.Item
-              title="Human Heart"
+              title="Human Digestive System"  
               onPress={() =>
                 LabHandler(
-                  "https://sketchfab.com/models/3f8072336ce94d18b3d0d055a1ece089/embed"
+                  "https://sketchfab.com/3d-models/human-digestive-system-c98532301b3f42f8b5ecf2e0063e9d73/embed"
                 )
               }
-            /> */}
+            />
+            <List.Item
+              title="Buccal Cavity of a Human"  
+              onPress={() =>
+                LabHandler(
+                  "https://sketchfab.com/3d-models/buccal-cavity-84ec38d195654d05bc9fe786d148e51f/embed"
+                )
+              }
+            />
+            <List.Item
+              title="T-S of leaf - 3D View"  
+              onPress={() =>
+                LabHandler(
+                  "https://sketchfab.com/3d-models/leaf-anatomy-layers-structure-0121ce17e38d4d919a2e9f9b98a69af7/embed"
+                )
+              }
+            />
+            <List.Item
+              title="Nutrition in Amoeba"  
+              onPress={() =>
+                LabHandler(
+                  "https://sketchfab.com/3d-models/leaf-anatomy-layers-structure-0121ce17e38d4d919a2e9f9b98a69af7/embed"
+                )
+              }
+            />
           </List.Accordion>
 
           <List.Accordion title="Chapter -2   Respiration">
@@ -41,10 +65,26 @@ const BiologyLab = () => {
               }
             />
             <List.Item
+              title="Diaphragm 3D View"
+              onPress={() =>
+                LabHandler(
+                  "https://sketchfab.com/3d-models/lung-animation-acbb5f0e16a14179ae4f63c5b6b83ad7/embed"
+                )
+              }
+            />
+            <List.Item
               title="Movement of rib cage during inhale and exhale"
               onPress={() =>
                 LabHandler(
                   "https://sketchfab.com/models/103c2e6837194277ae6529a4f4f4aa01/embed"
+                )
+              }
+            />
+            <List.Item
+              title="Alveolus - 3D View"
+              onPress={() =>
+                LabHandler(
+                  "https://sketchfab.com/3d-models/alveolar-sacs-40634043de27416594be40876f65a955/embed"
                 )
               }
             />
@@ -59,14 +99,38 @@ const BiologyLab = () => {
           </List.Accordion>
 
           <List.Accordion title="Chapter -3   Transportation">
-            {/* <List.Item
-              title="Stomach"
+            <List.Item
+              title="External Human Heart - 3D View"
               onPress={() =>
                 LabHandler(
-                  "https://sketchfab.com/models/7a27c17fd6c0488bb31ab093236a47fb/embed"
+                  "https://sketchfab.com/3d-models/realistic-human-heart-3f8072336ce94d18b3d0d055a1ece089/embed"
                 )
               }
-            /> */}
+            />
+            <List.Item
+              title="Internal Human Heart - 3D View"
+              onPress={() =>
+                LabHandler(
+                  "https://sketchfab.com/3d-models/human-heart-interior-view-26adbbe9c3d34cb698b7f75d7bfb76a6/embed"
+                )
+              }
+            />
+            <List.Item
+              title="Lymphatic System - 3D View"
+              onPress={() =>
+                LabHandler(
+                  "https://sketchfab.com/3d-models/male-complete-system-772aec14d5f54a0cb271d35846241918/embed"
+                )
+              }
+            />
+            <List.Item
+              title="Flow of blood in Blood Vessels"
+              onPress={() =>
+                LabHandler(
+                  "https://sketchfab.com/3d-models/arterial-vessel-tour-246576050a644cb4ae16840922385e39/embed"
+                )
+              }
+            />
           </List.Accordion>
 
           <List.Accordion title="Chapter -4   Excretion">
@@ -169,10 +233,26 @@ const BiologyLab = () => {
 
           <List.Accordion title="Chapter -5   Coordination">
             <List.Item
-              title="Stomach"
+              title="Nerve Cell - 3D View"
               onPress={() =>
                 LabHandler(
-                  "https://sketchfab.com/models/7a27c17fd6c0488bb31ab093236a47fb/embed"
+                  "https://sketchfab.com/3d-models/neuron-a6a64c81e44146469ccbadf3f01e84fe/embed"
+                )
+              }
+            />
+            <List.Item
+              title="Brain Internal Structure - 3D View"
+              onPress={() =>
+                LabHandler(
+                  "https://sketchfab.com/3d-models/internal-brain-structures-456db0f24fbb4baf909767b9cdc59375/embed"
+                )
+              }
+            />
+            <List.Item
+              title="Pancreas - 3D View"
+              onPress={() =>
+                LabHandler(
+                  "https://sketchfab.com/3d-models/pancreas-and-duodenum-b34ba50e38fd455bae43bd07b7ed2d3b/embed"
                 )
               }
             />
@@ -180,10 +260,42 @@ const BiologyLab = () => {
 
           <List.Accordion title="Chapter -6   Reproduction">
             <List.Item
-              title="Stomach"
+              title="Fission Video"
+              // onPress={() =>
+              //   LabHandler(
+              //     "https://sketchfab.com/models/7a27c17fd6c0488bb31ab093236a47fb/embed"
+              //   )
+              // }
+            />
+            <List.Item
+              title="Fragmentation Video"
+              // onPress={() =>
+              //   LabHandler(
+              //     "https://sketchfab.com/models/7a27c17fd6c0488bb31ab093236a47fb/embed"
+              //   )
+              // }
+            />
+            <List.Item
+              title="Human Embryo Stages Video"
+              // onPress={() =>
+              //   LabHandler(
+              //     "https://sketchfab.com/models/7a27c17fd6c0488bb31ab093236a47fb/embed"
+              //   )
+              // }
+            />
+            <List.Item
+              title="Sperm Cell - 3D View"
               onPress={() =>
                 LabHandler(
-                  "https://sketchfab.com/models/7a27c17fd6c0488bb31ab093236a47fb/embed"
+                  "https://sketchfab.com/3d-models/sperm-spermatozoa-detail-labelled-825158260a7b4f118fdf46393fe4b835/embed"
+                )
+              }
+            />
+            <List.Item
+              title="Mitosis & Meiosis"
+              onPress={() =>
+                LabHandler(
+                  "https://sketchfab.com/3d-models/sperm-spermatozoa-detail-labelled-825158260a7b4f118fdf46393fe4b835/embed"
                 )
               }
             />

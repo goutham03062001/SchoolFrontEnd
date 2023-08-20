@@ -1,11 +1,26 @@
-import { View, Text ,ScrollView} from 'react-native'
-import React from 'react'
-import {WebView} from "react-native-webview"
+import { View, Text ,ScrollView,Dimensions,SafeAreaView} from 'react-native'
+import React,{useEffect} from 'react'
+import {WebView} from "react-native-webview";
+// import {ScreenOrientation} from "expo-screen-orientation"
+
 const ViewLabExperiments = ({route}) => {
-    const {data} = route.params;
-    console.log(data);
+    const {data,inputText} = route.params;
     return(
-            <WebView source={{ uri : data}} />
+           
+                <View style={{flex:1}}>
+                
+               <WebView source={{ uri : data}} 
+                    
+                    />
+                
+
+               {inputText && (<>
+                <Text style={{color:"red",fontSize:18,marginLeft:10}}>Instructions </Text>
+            
+            <Text style={{lineHeight:30,marginLeft:10,color:'green'}}>{inputText}</Text>
+               </>)}
+            
+            </View>
     )
 
 }
