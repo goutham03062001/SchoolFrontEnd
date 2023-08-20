@@ -1,7 +1,6 @@
 import { View, Text ,ScrollView,Dimensions,SafeAreaView} from 'react-native'
 import React,{useEffect} from 'react'
 import {WebView} from "react-native-webview";
-// import {ScreenOrientation} from "expo-screen-orientation"
 
 const ViewLabExperiments = ({route}) => {
     const {data,inputText} = route.params;
