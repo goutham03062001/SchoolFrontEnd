@@ -23,7 +23,7 @@ const StudentDetails = () => {
             <DataTable.Title style={{width:100}}><Text style={{color:"brown"}}>Mobile </Text></DataTable.Title>
           </DataTable.Header>
          
-          {authContext.currentLoggedInStudent && authContext.currentLoggedInStudent ? <>
+          { authContext && authContext.currentLoggedInStudent && authContext.currentLoggedInStudent ? <>
           {authContext.currentLoggedInStudent.map((item,key=item._id)=>(<>
               {item && item.students && item.students.map((student)=>(<>
                 {student && (<>

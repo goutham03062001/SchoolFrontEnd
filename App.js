@@ -21,6 +21,7 @@ import FacultyDashboard from "./screens/TeacherDashboard/Dashboard";
 import FacultyHomeWork from "./screens/TeacherDashboard/HomeWork"
 import FacultyLeaveLetter from "./screens/TeacherDashboard/LeaveLetters";
 import TeacherDashboardHandler from './screens/TeacherDashboard/TeacherDashboardHandler';
+import ExperimentHandler from './screens/Dashboard/Experiments/ExperimentHandler';
 function AuthStack(){
   return(<>
       <Stack.Navigator>
@@ -35,7 +36,7 @@ function Authenticated(){
           <BottomTab.Screen name = "dashboard" component={DashboardHandler}
           options={{ tabBarIcon : ()=><AntDesign name="home" size={24} color="black" /> , headerShown:false}}
           />
-          <BottomTab.Screen name = "Experiments" component={Notes}
+          <BottomTab.Screen name = "Experiments" component={ExperimentHandler}
             options={{ tabBarIcon : ()=><Image source={{uri : "https://img.icons8.com/ios/50/test-tube.png"}} style={{width:25,height:28}}/>,
             headerShown:false}}
           />

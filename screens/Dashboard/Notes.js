@@ -11,12 +11,12 @@ import {
 import { Button, Card } from "react-native-paper";
 import { MaterialIcons } from "@expo/vector-icons";
 import { createStackNavigator } from "@react-navigation/stack";
-import PhysicsLab from "./Experiments/PhysicsLab";
-import BiologyLab from "./Experiments/BiologyLab";
-import MathsLab from "./Experiments/MathsLab";
+import PhysicsLab from "./Experiments/Tenth/PhysicsLab";
+import BiologyLab from "./Experiments/Tenth/BiologyLab";
+import MathsLab from "./Experiments/Tenth/MathsLab";
 const Stack = createStackNavigator();
 import { useNavigation } from "@react-navigation/native";
-import ViewLabExperiments from "./Experiments/ViewLabExperiments";
+import ViewLabExperiments from "./Experiments/Tenth/ViewLabExperiments";
 function DisplaySubjectsHandler() {
   const navigation = useNavigation();
   function MathsSubjectHandler(){

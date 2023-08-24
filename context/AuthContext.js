@@ -88,6 +88,7 @@ export default function AuthContextProvider({children}){
               setLocalItem(role,AdmissionNumber);
                setAuthenticated(true);
                setLoading(false);
+
            return Alert.alert("Registration Success","You are now authenticated");
            }
            

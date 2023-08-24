@@ -8,17 +8,13 @@ const ViewLabExperiments = ({route}) => {
            
                 <View style={{flex:1}}>
                 
-               <WebView source={{ uri : data}} 
-                    
-                    />
-                
-
+               <WebView source={{ uri : data}}/>
                {inputText && (<>
                 <Text style={{color:"red",fontSize:18,marginLeft:10}}>Instructions </Text>
             
             <Text style={{lineHeight:30,marginLeft:10,color:'green'}}>{inputText}</Text>
                </>)}
-            
+
             </View>
     )
 
