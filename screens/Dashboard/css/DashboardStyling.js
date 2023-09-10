@@ -4,40 +4,46 @@ export const styles = StyleSheet.create({
     rootContainer:{
         width:"100%",
         height:"100%",
-        padding:5
+        padding:5,
+        gap:3
     },
     topDiv:{
         width:"100%",
         height:210,
-        borderTopStartRadius:20,
-        borderBottomEndRadius:80,
         zIndex:-100,
         justifyContent:'flex-start',
         alignItems:'flex-start',
-        padding:8
+        backgroundColor:"#7C73C0",
+        borderBottomLeftRadius:5,
+        borderBottomEndRadius:50,
+        borderTopStartRadius:50,
+        elevation:8,
+        paddingTop:20
     },
     personalCardStyle:{
         top:5,
         borderRadius:8,
-        width:"100%",
-        height:"90%",
-        backgroundColor:"#73b2ff",
-        elevation:5
+        width:"80%",
+        height:"60%",
+        marginHorizontal:"10%",
     },
     personalCardContent:{
         flexDirection:"column",
         justifyContent:"flex-start",
         alignItems:"center",
-        gap:10
+        // borderBottomStartRadius:8,
+        gap:10,
     },
     bottomDiv:{
-        width:"99%",
+        width:"100%",
         height:"100%",
         justifyContent:"flex-start",
         alignItems:"center",
-        padding:5,
+        paddingTop:30,
+        paddingHorizontal:5,
         gap:20,
-        top:35
+        backgroundColor:"#8ECDDD",
+        borderRadius:8
     },
     bottomCard:{
         width:160,

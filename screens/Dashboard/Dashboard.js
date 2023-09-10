@@ -39,56 +39,48 @@ const Dashboard = () => {
         <View style={styles.rootContainer}>
             <View style = {styles.topDiv}>
                 <Pressable onPress = {viewPersonalDetailsHandler} style = {{width:"100%"}}>
-                <Card style = {styles.personalCardStyle}>
-                    <Card.Content style = {styles.personalCardContent}>
-                    <Image source={{ uri : "https://img.icons8.com/color/96/circled-user-male-skin-type-1-2--v1.png"}} style={{ width:80,height:80}}/>
-                        {/* {
-                            loadingDetails ? 
-                                <Text>Loading.. Details</Text>
-                             : <>
-                            {currStudentDetails && <>
-                            <Text>{currStudentDetails.Name} | {currentRole}</Text>
-                        <Text>ID- {admissionNumber} |  Class - {currStudentDetails.className}</Text>
-                        </>}
-                            </>
-                        } */}
-                        {authCtx.loading ? <Text>Loading....</Text> :<>
+                <View style = {styles.personalCardStyle}>
+                    <View style = {styles.personalCardContent}>
+                    <Image source={{ uri : "https://cdn3d.iconscout.com/3d/premium/thumb/graduate-student-6368706-5250853.png"}} style={{ width:80,height:80}}/>
+                        
+                        {authCtx.loading ? <Text style={{color:"white"}}>Loading....</Text> :<>
                             {/* {authCtx.currentLoggedInStudent.map(())} */}
-                            <Text>{authCtx.currentLoggedInStudent.Name} | {authCtx.currentLoggedInStatus}</Text>
-                            <Text>{authCtx.currentLoggedInId} | Class - {authCtx.currentLoggedInStudent.className}</Text>
+                            <Text style={{color:"yellow"}}>{authCtx.currentLoggedInStudent.Name} | {authCtx.currentLoggedInStatus}</Text>
+                            <Text style={{color:"#45FFCA"}}>{authCtx.currentLoggedInId} | Class - {authCtx.currentLoggedInStudent.className}</Text>
                         </>}
 
 
-                    </Card.Content>
-                </Card>
+                    </View>
+                </View>
                 </Pressable>
             </View>
 
             {/* bottomDiv */}
             <View style = {styles.bottomDiv}>
                 <View style = {styles.firstRow}>
-                    <Pressable onPress={CalendarNavigation}>
-                    <View style={[styles.bottomCard, {flexDirection:"column",justifyContent:"space-around",alignItems:"center"}]}>
-                    <Image source = {require("./../../assets/calendar.png")} style={{width:60,height:60}}/>
-                    <Text>Calendar</Text>
+                    <Pressable onPress={CalendarNavigation}
+                    >
+                    <View style={[styles.bottomCard, {flexDirection:"column",justifyContent:"space-around",alignItems:"center",backgroundColor:"#662549",borderRadius:15,borderColor:"white",borderWidth:2}]}>
+                    <Image source = {require("./../../assets/calendar.png")} style={{width:100,height:110}}/>
+                    <Text style={{color:"yellow",fontWeight:"400"}}>Calendar</Text>
                     </View>
                     </Pressable>
                    <Pressable onPress={AttendanceNavigation}>
-                   <View style={[styles.bottomCard, {flexDirection:"column",justifyContent:"space-around",alignItems:"center"}]}>
-                    <Image source = {require("./../../assets/attendance.png")} style={{width:60,height:60}}/>
-                    <Text>Attendance</Text></View>
+                   <View style={[styles.bottomCard, {flexDirection:"column",justifyContent:"space-around",alignItems:"center",backgroundColor:"#451952",borderRadius:15,borderColor:"white",borderWidth:2}]}>
+                    <Image source = {require("./../../assets/attendance.png")} style={{width:80,height:110}}/>
+                    <Text style={{color:"white",fontWeight:"400"}}>Attendance</Text></View>
                    </Pressable>
                 </View>
                 <View style = {styles.secondRow}>
                 <Pressable onPress={FeeDetailsNavigation}>
-                <View style={[styles.bottomCard, {flexDirection:"column",justifyContent:"space-around",alignItems:"center"}]}>
-                <Image source = {require("./../../assets/examfee.png")} style={{width:60,height:60}}/>
-                <Text>Fee Details</Text></View>
+                <View style={[styles.bottomCard, {flexDirection:"column",justifyContent:"space-around",alignItems:"center",backgroundColor:"#AE445A",borderRadius:15,borderColor:"white",borderWidth:2}]}>
+                <Image source = {require("./../../assets/examfee.png")} style={{width:60,height:100}}/>
+                <Text style={{color:"#CAEDFF",fontWeight:"400"}}>Fee Details</Text></View>
                 </Pressable>
                     <Pressable onPress = {ResultsNavigation}>
-                    <View style={[styles.bottomCard, {flexDirection:"column",justifyContent:"space-around",alignItems:"center"}]}>
-                    <Image source = {require("./../../assets/results.png")} style={{width:60,height:60}}/>
-                    <Text>Results</Text></View>
+                    <View style={[styles.bottomCard, {flexDirection:"column",justifyContent:"space-around",alignItems:"center",backgroundColor:"#F39F5A",borderRadius:15,borderColor:"white",borderWidth:2}]}>
+                    <Image source = {require("./../../assets/result.png")} style={{width:"100%",height:110}}/>
+                    <Text style={{color:"blue",fontWeight:"400"}}>Results</Text></View>
                     </Pressable>
                 </View>
             </View>

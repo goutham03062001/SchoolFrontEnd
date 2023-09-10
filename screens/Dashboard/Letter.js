@@ -67,8 +67,8 @@ const Letter = () => {
                     <Button style={{borderRadius:0, marginTop:20,backgroundColor:closeBtnClicked ? '' : "#7AA874"}}
                 onPress = {closeHandler}
                 ><Text style={{color:"white"}}>Letter Sent!! you can now close</Text></Button>
-                </> : <><Button mode="contained-tonal" style={{borderRadius:0, marginTop:20}}
-                onPress={formHandler}>Send leave letter</Button></>}
+                </> : <><Button mode="contained-tonal" style={{borderRadius:0, marginTop:20,backgroundColor:"#191D88"}}
+                onPress={formHandler} textColor='white'>Send leave letter</Button></>}
                
               </Card.Content>
             </Card>

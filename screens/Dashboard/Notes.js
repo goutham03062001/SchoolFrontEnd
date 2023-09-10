@@ -17,6 +17,7 @@ import MathsLab from "./Experiments/Tenth/MathsLab";
 const Stack = createStackNavigator();
 import { useNavigation } from "@react-navigation/native";
 import ViewLabExperiments from "./Experiments/Tenth/ViewLabExperiments";
+import PhysicsSubject from "./../../assets/PhysicsSubject.png"
 function DisplaySubjectsHandler() {
   const navigation = useNavigation();
   function MathsSubjectHandler(){
@@ -32,46 +33,12 @@ function DisplaySubjectsHandler() {
   return (
     <ScrollView>
       <View style={styles.rootContainer}>
-        {/* <Pressable android_ripple={{ color: "#ccc" }}
-        onPress = {MathsSubjectHandler}>
-          <Card style={styles.cardStyle}>
-            <Card.Content>
-              <Image
-                source={require("../../assets/Maths.jpg")}
-                style={{ width: "100%", height: 140 }}
-              />
-
-              <View
-                style={{
-                  marginTop: 15,
-                  flexDirection: "row",
-                  justifyContent: "space-between",
-                }}
-              >
-                <View>
-                  <Text>Total Exp - 10</Text>
-                </View>
-                <View
-                  style={{
-                    flexDirection: "row",
-                    justifyContent: "center",
-                    alignItems: "center",
-                  }}
-                >
-                  <Text>Completed - 3 </Text>
-                  <MaterialIcons name="done" size={20} color="green" />
-                </View>
-              </View>
-            </Card.Content>
-          </Card>
-        </Pressable> */}
-
         <Pressable android_ripple={{ color: "#ccc" }}
         onPress={ PhysicsSubjectHandler }>
         <Card style={styles.cardStyle}>
           <Card.Content>
             <Image
-              source={require("../../assets/Physics.jpg")}
+              source={require("./../../assets/PhysicsSubject.png")}
               style={{ width: "100%", height: 140 }}
             />
 

@@ -17,7 +17,10 @@ const BiologyLab = () => {
        {authContext && authContext.currentLoggedInStudent && (<>
         {authContext.currentLoggedInStudent.className === 10 ? <>
           <List.Section title="Biology" style={{ gap: 5 }}>
-          <List.Accordion title="Chapter -1   Nutrition">
+          <List.Accordion title="Chapter -1   Nutrition"
+          titleStyle={{color:"yellow"}}
+        
+          style={{backgroundColor:"#974EA3"}}>
             <List.Item
               title="Chloroplast - 3D View"
               onPress={() =>
@@ -25,6 +28,7 @@ const BiologyLab = () => {
                   "https://sketchfab.com/3d-models/chloroplast-30bc55b2f763415f9222f876c564be97/embed"
                 )
               }
+              titleStyle={{color:"#191D88"}}
             />
             <List.Item
               title="Human Digestive System"  
@@ -33,6 +37,7 @@ const BiologyLab = () => {
                   "https://sketchfab.com/3d-models/human-digestive-system-c98532301b3f42f8b5ecf2e0063e9d73/embed"
                 )
               }
+              titleStyle={{color:"#79155B"}}
             />
             <List.Item
               title="Buccal Cavity of a Human"  
@@ -41,6 +46,7 @@ const BiologyLab = () => {
                   "https://sketchfab.com/3d-models/buccal-cavity-84ec38d195654d05bc9fe786d148e51f/embed"
                 )
               }
+              titleStyle={{color:"#BB2525"}}
             />
             <List.Item
               title="T-S of leaf - 3D View"  
@@ -49,6 +55,8 @@ const BiologyLab = () => {
                   "https://sketchfab.com/3d-models/leaf-anatomy-layers-structure-0121ce17e38d4d919a2e9f9b98a69af7/embed"
                 )
               }
+              titleStyle={{color:"#793FDF"}}
+
             />
             <List.Item
               title="Nutrition in Amoeba"  
@@ -57,10 +65,14 @@ const BiologyLab = () => {
                   "https://sketchfab.com/3d-models/figure-65-a5600992292e4e3ea998d8537e1dfb53/embed"
                 )
               }
+              titleStyle={{color:"#0F2C59"}}
+              
             />
           </List.Accordion>
 
-          <List.Accordion title="Chapter -2   Respiration">
+          <List.Accordion title="Chapter -2   Respiration"
+          titleStyle={{color:"black"}}
+          style={{backgroundColor:"#E4E4D0"}}>
             <List.Item
               title="Human Respiratory System 3D View"
               onPress={() =>
@@ -68,6 +80,7 @@ const BiologyLab = () => {
                   "https://sketchfab.com/models/250911151757489da1cf5501b791f363/embed"
                 )
               }
+              titleStyle={{color:"#191D88"}}
             />
             <List.Item
               title="Diaphragm 3D View"
@@ -76,6 +89,7 @@ const BiologyLab = () => {
                   "https://sketchfab.com/3d-models/lung-animation-acbb5f0e16a14179ae4f63c5b6b83ad7/embed"
                 )
               }
+              titleStyle={{color:"#79155B"}}
             />
             <List.Item
               title="Movement of rib cage during inhale and exhale"
@@ -84,6 +98,7 @@ const BiologyLab = () => {
                   "https://sketchfab.com/models/103c2e6837194277ae6529a4f4f4aa01/embed"
                 )
               }
+              titleStyle={{color:"#BB2525"}}
             />
             <List.Item
               title="Alveolus - 3D View"
@@ -92,6 +107,7 @@ const BiologyLab = () => {
                   "https://sketchfab.com/3d-models/alveolar-sacs-40634043de27416594be40876f65a955/embed"
                 )
               }
+              titleStyle={{color:"#793FDF"}}
             />
             <List.Item
               title="Mitochondria"
@@ -100,10 +116,12 @@ const BiologyLab = () => {
                   "https://sketchfab.com/models/397631a85faa487ba1f1cc4fe5e1b7e3/embed"
                 )
               }
+              titleStyle={{color:"#191D88"}}
             />
           </List.Accordion>
 
-          <List.Accordion title="Chapter -3   Transportation">
+          <List.Accordion title="Chapter -3   Transportation" style={{backgroundColor:"#8ECDDD"}}
+          titleStyle={{color:"black"}}>
             <List.Item
               title="External Human Heart - 3D View"
               onPress={() =>
@@ -111,6 +129,7 @@ const BiologyLab = () => {
                   "https://sketchfab.com/3d-models/realistic-human-heart-3f8072336ce94d18b3d0d055a1ece089/embed"
                 )
               }
+              titleStyle={{color:"#191D88"}}
             />
             <List.Item
               title="Internal Human Heart - 3D View"
@@ -119,6 +138,7 @@ const BiologyLab = () => {
                   "https://sketchfab.com/3d-models/human-heart-interior-view-26adbbe9c3d34cb698b7f75d7bfb76a6/embed"
                 )
               }
+              titleStyle={{color:"#79155B"}}
             />
             <List.Item
               title="Lymphatic System - 3D View"
@@ -127,6 +147,7 @@ const BiologyLab = () => {
                   "https://sketchfab.com/3d-models/male-complete-system-772aec14d5f54a0cb271d35846241918/embed"
                 )
               }
+              titleStyle={{color:"#BB2525"}}
             />
             <List.Item
               title="Flow of blood in Blood Vessels"
@@ -135,10 +156,11 @@ const BiologyLab = () => {
                   "https://sketchfab.com/3d-models/arterial-vessel-tour-246576050a644cb4ae16840922385e39/embed"
                 )
               }
+              titleStyle={{color:"#793FDF"}}
             />
           </List.Accordion>
 
-          <List.Accordion title="Chapter -4   Excretion">
+          <List.Accordion title="Chapter -4   Excretion" style={{backgroundColor:"#B9B4C7"}} titleStyle={{color:"#191D88"}}>
             <List.Item
               title="External Features of Kidney"
               onPress={() =>
@@ -146,6 +168,7 @@ const BiologyLab = () => {
                   "https://sketchfab.com/models/770456dfc5f443aa951d037c9c0f2b4b/embed"
                 )
               }
+              titleStyle={{color:"#191D88"}}
             />
             <List.Item
               title="Internal Features of Kidney"
@@ -154,6 +177,7 @@ const BiologyLab = () => {
                   "https://sketchfab.com/models/0dea52d6f6a848ab8f2cdc3f5b3ba212/embed"
                 )
               }
+              titleStyle={{color:"#79155B"}}
             />
                <List.Item
               title="Nephron 3D View"
@@ -162,6 +186,7 @@ const BiologyLab = () => {
                   "https://sketchfab.com/models/898146d60a0741c6ac9910210e4eac20/embed"
                 )
               }
+              titleStyle={{color:"#BB2525"}}
             />
 
             <List.Item
@@ -171,6 +196,7 @@ const BiologyLab = () => {
                   ""
                 )
               }
+              titleStyle={{color:"#793FDF"}}
             />
 
             <List.Item
@@ -180,6 +206,7 @@ const BiologyLab = () => {
                   "https://sketchfab.com/models/a9aae9da3a06475b862315393814c77d/embed"
                 )
               }
+              titleStyle={{color:"#0F2C59"}}
             />
 
             <List.Item
@@ -189,6 +216,7 @@ const BiologyLab = () => {
                   ""
                 )
               }
+              titleStyle={{color:"#191D88"}}
             />
             <List.Item
               title="Kidney Transpilation"
@@ -197,6 +225,7 @@ const BiologyLab = () => {
                   "https://sketchfab.com/models/dfffd86f197949d6b47eee29de228de5/embed"
                 )
               }
+              titleStyle={{color:"#79155B"}}
             />
 
 
@@ -207,6 +236,7 @@ const BiologyLab = () => {
                   "https://sketchfab.com/models/ce09f4099a68467880f46e61eb9a3531/embed"
                 )
               }
+              titleStyle={{color:"#BB2525"}}
             />
             <List.Item
               title="Skin 3D View"
@@ -215,6 +245,7 @@ const BiologyLab = () => {
                   "https://sketchfab.com/models/8c2b71daaad547c794334daa82acecb2/embed"
                 )
               }
+              titleStyle={{color:"#793FDF"}}
             />
 
             <List.Item
@@ -224,6 +255,7 @@ const BiologyLab = () => {
                   "https://sketchfab.com/models/d0bce1a8e16a4b69b5b235e4248b2d19/embed"
                 )
               }
+              titleStyle={{color:"#0F2C59"}}
             />  
 
             <List.Item
@@ -233,10 +265,11 @@ const BiologyLab = () => {
                   "https://sketchfab.com/models/8a1ca8e3ca224cdeb9264674416bde38/embed"
                 )
               }
+              titleStyle={{color:"#79155B"}}
             />
           </List.Accordion>
 
-          <List.Accordion title="Chapter -5   Coordination">
+          <List.Accordion title="Chapter -5   Coordination" style={{backgroundColor:"#337CCF"}} titleStyle={{color:"white"}}>
             <List.Item
               title="Nerve Cell - 3D View"
               onPress={() =>
@@ -244,6 +277,7 @@ const BiologyLab = () => {
                   "https://sketchfab.com/3d-models/neuron-a6a64c81e44146469ccbadf3f01e84fe/embed"
                 )
               }
+              titleStyle={{color:"#191D88"}}
             />
             <List.Item
               title="Brain Internal Structure - 3D View"
@@ -252,6 +286,7 @@ const BiologyLab = () => {
                   "https://sketchfab.com/3d-models/internal-brain-structures-456db0f24fbb4baf909767b9cdc59375/embed"
                 )
               }
+              titleStyle={{color:"#79155B"}}
             />
             <List.Item
               title="Pancreas - 3D View"
@@ -260,10 +295,11 @@ const BiologyLab = () => {
                   "https://sketchfab.com/3d-models/pancreas-and-duodenum-b34ba50e38fd455bae43bd07b7ed2d3b/embed"
                 )
               }
+              titleStyle={{color:"#BB2525"}}
             />
           </List.Accordion>
 
-          <List.Accordion title="Chapter -6   Reproduction">
+          <List.Accordion title="Chapter -6   Reproduction" style={{backgroundColor:"#ffb5a7"}} titleStyle={{color:"black"}}>
             <List.Item
               title="Fission Video"
               // onPress={() =>
@@ -271,6 +307,7 @@ const BiologyLab = () => {
               //     "https://sketchfab.com/models/7a27c17fd6c0488bb31ab093236a47fb/embed"
               //   )
               // }
+              titleStyle={{color:"#191D88"}}
             />
             <List.Item
               title="Fragmentation Video"
@@ -279,6 +316,7 @@ const BiologyLab = () => {
               //     "https://sketchfab.com/models/7a27c17fd6c0488bb31ab093236a47fb/embed"
               //   )
               // }
+              titleStyle={{color:"#79155B"}}
             />
             <List.Item
               title="Human Embryo Stages Video"
@@ -287,6 +325,7 @@ const BiologyLab = () => {
               //     "https://sketchfab.com/models/7a27c17fd6c0488bb31ab093236a47fb/embed"
               //   )
               // }
+              titleStyle={{color:"#BB2525"}}
             />
             <List.Item
               title="Sperm Cell - 3D View"
@@ -295,6 +334,7 @@ const BiologyLab = () => {
                   "https://sketchfab.com/3d-models/sperm-spermatozoa-detail-labelled-825158260a7b4f118fdf46393fe4b835/embed"
                 )
               }
+              titleStyle={{color:"#793FDF"}}
             />
             <List.Item
               title="Mitosis & Meiosis"
@@ -303,51 +343,52 @@ const BiologyLab = () => {
                   "https://sketchfab.com/3d-models/sperm-spermatozoa-detail-labelled-825158260a7b4f118fdf46393fe4b835/embed"
                 )
               }
+              titleStyle={{color:"#0F2C59"}}
             />
           </List.Accordion>
 
-          <List.Accordion title="Chapter -7   Coordination in life processes">
-            <List.Item
+          <List.Accordion title="Chapter -7   Coordination in life processes" style={{backgroundColor:"#a09abc"}} titleStyle={{color:"#191D88"}}>
+            {/* <List.Item
               title="Stomach"
               onPress={() =>
                 LabHandler(
                   "https://sketchfab.com/models/7a27c17fd6c0488bb31ab093236a47fb/embed"
                 )
               }
-            />
+            /> */}
           </List.Accordion>
 
-          <List.Accordion title="Chapter -8   Heredity">
-            <List.Item
+          <List.Accordion title="Chapter -8   Heredity" style={{backgroundColor:"#e0aaff"}} titleStyle={{color:"black"}}>
+            {/* <List.Item
               title="Stomach"
               onPress={() =>
                 LabHandler(
                   "https://sketchfab.com/models/7a27c17fd6c0488bb31ab093236a47fb/embed"
                 )
               }
-            />
+            /> */}
           </List.Accordion>
 
-          <List.Accordion title="Chapter -9   Our Environment">
-            <List.Item
+          <List.Accordion title="Chapter -9   Our Environment" style={{backgroundColor:"#bfdbf7"}} titleStyle={{color:"black"}}>
+            {/* <List.Item
               title="Stomach"
               onPress={() =>
                 LabHandler(
                   "https://sketchfab.com/models/7a27c17fd6c0488bb31ab093236a47fb/embed"
                 )
               }
-            />
+            /> */}
           </List.Accordion>
 
-          <List.Accordion title="Chapter -10   Natural Resources">
-            <List.Item
+          <List.Accordion title="Chapter -10   Natural Resources" style={{backgroundColor:"#A2678A"}} titleStyle={{color:"white"}}>
+            {/* <List.Item
               title="Stomach"
               onPress={() =>
                 LabHandler(
                   "https://sketchfab.com/models/7a27c17fd6c0488bb31ab093236a47fb/embed"
                 )
               }
-            />
+            /> */}
           </List.Accordion>
         </List.Section>
         </> : <></>}

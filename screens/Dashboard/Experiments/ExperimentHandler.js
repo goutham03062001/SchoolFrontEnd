@@ -32,10 +32,10 @@ function DisplaySubjectsHandler(){
           
             <Pressable android_ripple={{ color: "#ccc" }}
         onPress={ PhysicsSubjectHandler }>
-        <Card style={styles.cardStyle}>
-          <Card.Content>
+        <Card style={{padding:10}}>
+          
             <Image
-              source={require("../../../assets/Physics.jpg")}
+              source={require("../../../assets/PhysicsSubject.png")}
               style={{ width: "100%", height: 140 }}
             />
 
@@ -48,14 +48,14 @@ function DisplaySubjectsHandler(){
             >
              <Text>Class - {authContext.currentLoggedInStudent.className}</Text>
             </View>
-          </Card.Content>
+          
         </Card>
         </Pressable>
 
         <Pressable android_ripple={{ color: "#ccc" }}
         onPress = {BiologySubjectHandler}>
-        <Card style={{ height: 300 ,marginTop:10}}>
-          <Card.Content>
+        <Card style={{ height: 300 ,marginTop:10,backgroundColor:"#FFE5E5",padding:10}}>
+          
             <Image
               source={require("../../../assets/Biology.jpeg")}
               style={{ width: "99%", height: "90%" }}
@@ -71,7 +71,7 @@ function DisplaySubjectsHandler(){
              <Text>Class - {authContext.currentLoggedInStudent.className}</Text>
               
             </View>
-          </Card.Content>
+          
         </Card>
         </Pressable>
           
@@ -108,7 +108,9 @@ const ExperimentHandler = () => {
 const styles = StyleSheet.create({
     rootContainer:{
         flex:1,
-        marginTop:50
+        marginTop:50,
+        backgroundColor:"#A8DF8E",
+        padding:10
     }
 })
 

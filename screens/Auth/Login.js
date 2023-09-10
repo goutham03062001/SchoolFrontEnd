@@ -1,5 +1,5 @@
 import React,{useState,useContext} from 'react';
-import {View, StyleSheet,Text,TextInput,Button,Alert} from 'react-native';
+import {View, StyleSheet,Text,TextInput,Button,Alert,Image} from 'react-native';
 import { AuthContext } from '../../context/AuthContext';
 import {Button as PaperButton} from "react-native-paper";
 import { useNavigation } from '@react-navigation/native';
@@ -38,7 +38,12 @@ const Login = () => {
     }
     return (
         <View style={styles.rootContainer}>
-            <Text>Login</Text>
+            <View style={styles.topContainer}>
+            <Text style={{textAlign:'center',paddingVertical:10,fontSize:18,color:"#8338ec"}}>LOGIN INTO YOUR ACCOUNT </Text>
+      <Image source={require("../../assets/LoginImage.jpg")} style = {{width : "100%",height:"70%"}}/>
+            </View>
+
+            <View style={styles.bottomContainer}>
             <Picker
         style={styles.inputContainer}
         onValueChange={(itemValue, itemIndex) => setRole(itemValue)}
@@ -51,16 +56,19 @@ const Login = () => {
              {role === "Student" && <>
              <TextInput placeholder='Enter your admission number' style = {styles.inputContainer}
                 onChangeText={ (e)=>{setAdmissionNumber(e)}}
+                placeholderTextColor="white"
             />
             
             <TextInput placeholder='Enter your password' style = {styles.inputContainer}
-                onChangeText={ (e)=>{setPassword(e)}}/>
+                onChangeText={ (e)=>{setPassword(e)}}
+                placeholderTextColor="white"
+
+                />
            
              </>}
              {(role === "Teacher" || role==="Principal") && <>
              <TextInput placeholder='Enter your mobile number' style = {styles.inputContainer}
                 onChangeText={ (e)=>{setMobile(e)}}
-
             />
 
             <TextInput placeholder='Enter your password' style = {styles.inputContainer}
@@ -70,41 +78,58 @@ const Login = () => {
             
             <View style={styles.btn}>
             {
-          authContext.loading ? <Button title="Loading...." style={styles.btn} /> : <Button title="Login" style={styles.btn} onPress={loginHandler} />
+          authContext.loading ? <Button title="Loading...." style={styles.btn} 
+            color="#504099"
+          /> : <Button title="Login" style={styles.btn} onPress={loginHandler} color="#504099"/>
         }
             </View>
 
-            <View style={{marginVertical:18,flexDirection:"row", justifyContent:"space-around",alignItems:"center"}}>
+            <View style={{marginVertical:18,flexDirection:"row", justifyContent:"center",alignItems:"center"}}>
                 <View>
                     <Text>Don't have an account ?</Text>
                 </View>
                 <PaperButton onPress= {LoginComponentHandler}>Signup here</PaperButton>
+            </View>
             </View>
         </View>
     );
 }
 
 const styles = StyleSheet.create({
-    rootContainer:{
-        width:"100%",
-        height:"100%",
-        justifyContent:"flex-start",
+    rootContainer: {
+        flex:1,
+        flexDirection:"column",
+        justifyContent: "flex-start",
         alignItems:"center",
-        padding:10
-    },
-    inputContainer:{
-        width:"90%",
-        height:50,
+        // padding: 18,
+        backgroundColor:"#C3DDDD"
+      },
+      topContainer:{
+        width:"100%",
+        height:"40%",
         backgroundColor:"white",
+        padding:10,
+        borderBottomRightRadius:29
+      },
+      bottomContainer:{
+        width:"100%",
+        height:"50%",
+        padding:18
+      },
+    inputContainer:{
+        width:"100%",
+        height:50,
+        backgroundColor:"#9D44C0",
         borderWidth:1,
         borderColor:"black",
-        marginTop:30,
-        padding:5,
-        borderRadius:5
+        marginTop:20,
+        padding:10,
+        borderRadius:10,
+        color:"yellow"
     },
     btn:{
-        width:"90%",
-        marginTop:28,
+        width:"100%",
+        marginTop:25,
         padding:2
     }
 })

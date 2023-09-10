@@ -1,8 +1,8 @@
 {
   "expo": {
-    "name": "Triveni High School",
-    "slug": "Testapp",
-    "version": "3.0.2",
+    "name": "Vani Vidhyalayam",
+    "slug": "VaniVidhyalayam",
+    "version": "3.0.3",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
@@ -23,18 +23,14 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.goutham0306.Testapp"
+      "package": "com.goutham0306.VaniVidhyalayam"
     },
     "web": {
       "favicon": "./assets/favicon.png"
     },
     "runtimeVersion": {
       "policy": "sdkVersion"
-    },
-    "extra": {
-      "eas": {
-        "projectId": "c90d105d-4a9a-4ba6-b6be-4ebd65291eff"
-      }
     }
+    
   }
 }

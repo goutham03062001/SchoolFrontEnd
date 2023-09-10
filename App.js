@@ -32,20 +32,21 @@ function AuthStack(){
 }
 function Authenticated(){
   return(<>
-         <BottomTab.Navigator>
+         <BottomTab.Navigator
+         >
           <BottomTab.Screen name = "dashboard" component={DashboardHandler}
-          options={{ tabBarIcon : ()=><AntDesign name="home" size={24} color="black" /> , headerShown:false}}
+          options={{ tabBarIcon : ()=><Image source={require("./assets/Home.png")} style={{width:25,height:28}}/> ,headerShown:false,tabBarActiveBackgroundColor:"#BC7AF9",tabBarInactiveBackgroundColor:"#ffff",tabBarActiveTintColor:"white",tabBarItemStyle:{borderRadius:1,padding:2,borderBottomRightRadius:25,borderTopRightRadius:1}}}
           />
           <BottomTab.Screen name = "Experiments" component={ExperimentHandler}
-            options={{ tabBarIcon : ()=><Image source={{uri : "https://img.icons8.com/ios/50/test-tube.png"}} style={{width:25,height:28}}/>,
+            options={{ tabBarIcon : ()=><Image source={require("./assets/Lab.png")} style={{width:25,height:28}}/>,tabBarActiveBackgroundColor:"#662549",tabBarActiveTintColor:"white",tabBarItemStyle:{borderRadius:1,padding:2,borderBottomRightRadius:25,borderTopRightRadius:1},
             headerShown:false}}
           />
           <BottomTab.Screen name = "Leave Letter" component={Letter}
-            options={{ tabBarIcon : ()=><Image source = {{uri : "https://img.icons8.com/ios/50/secured-letter--v1.png"}} style={{width:25,height:23}}/>}}
+            options={{ tabBarIcon : ()=><Image source = {require("./assets/letter.png")} style={{width:25,height:23}}/>,tabBarActiveBackgroundColor:"#451952",tabBarActiveTintColor:"white",tabBarItemStyle:{borderRadius:1,padding:2,borderBottomRightRadius:25,borderTopRightRadius:1},}}
           />
-          <BottomTab.Screen name = "home work" component={HomeWorkHandler}
-            options={{ tabBarIcon : ()=><Image source={{uri : "https://img.icons8.com/ios/50/homework.png"}} style={{width:25,height:28}}/>,
-            headerShown : false
+          <BottomTab.Screen name = "Home work" component={HomeWorkHandler}
+            options={{ tabBarIcon : ()=><Image source={require("./assets/HomeWork.png")} style={{width:25,height:28}}/>,
+            headerShown : false,tabBarActiveBackgroundColor:"#191D88",tabBarActiveTintColor:"white",tabBarItemStyle:{borderRadius:1,padding:2,borderBottomRightRadius:25,borderTopRightRadius:1},
             }}
           />
         </BottomTab.Navigator>
