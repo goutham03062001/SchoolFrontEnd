@@ -1,9 +1,26 @@
 import { View, Text, StyleSheet, ScrollView } from "react-native";
-import React,{useContext} from "react";
+import React,{useState,useContext,useEffect} from "react";
 import { AuthContext } from "../../context/AuthContext";
-export default function FeeDetails() {
 
+export default function FeeDetails() {
   const authContext = useContext(AuthContext);
+  const [backgroundColor, setBackgroundColor] = useState('');
+  useEffect(()=>{
+    const getRandomColor = () => {
+      const letters = '0123456789ABCDEF';
+      let color = '#';
+      for (let i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+      }
+      return color;
+    };
+
+    // Set the background color when the component mounts
+    setBackgroundColor(getRandomColor());
+    authContext.loadFeeDetails(authContext.currentLoggedInStudent && authContext.currentLoggedInStudent.AdmissionNumber);
+  
+  
+  },[])
  console.log("Fee Details Component");
  console.log(authContext.currStudentDetails); 
 
@@ -76,27 +93,26 @@ export default function FeeDetails() {
               marginBottom: 5,
             }}
           >
-            Your Recent Payments
+            Your Recent Payments 
           </Text>
           {/* <Text style = {{fontSize:20,textAlign:"center"}}>Your recent payment appear here.</Text> */}
-          <View style={styles.recentPaymentCard}>
-            <Text>Tuition Fee</Text>
-            <Text>&#8377;0/-</Text>
-            <Text> -- </Text>
-          </View>
+        
 
-          <View style={styles.recentPaymentCard}>
-            <Text>Van Fee</Text>
-            <Text>&#8377;0/-</Text>
-            <Text> -- </Text>
-          </View>
-
-          <View style={styles.recentPaymentCard}>
-            <Text>Exam Fee</Text>
-            <Text>&#8377;0/-</Text>
-            <Text> -- </Text>
-          </View>
-          
+            { authContext && (authContext.feeDetails && (<>
+              {authContext.feeDetails.map((payment)=>(<>
+               <View style={[styles.recentPaymentCard,{backgroundColor:"#8DDFCB"}]}>
+                {payment && payment.Student && (
+                  payment.Student.Payments.map((payment)=>(
+                    <>
+                    <Text>{payment && payment.reason}</Text>
+                    <Text>&#8377; {payment.money}/-</Text>
+                    <Text>{payment.date}</Text>
+                    </>
+                    ))
+                )}
+               </View>
+              </>))}
+            </>))}
         </View>
       </View>
     </ScrollView>
@@ -170,12 +186,12 @@ const styles = StyleSheet.create({
   recentPaymentCard: {
     width: "100%",
     height: 80,
-    backgroundColor:"white",
+    backgroundColor:"#C3DDFF",
     flexDirection: "row",
     justifyContent: "space-around",
     alignItems: "center",
     borderRadius: 5,
     elevation: 5,
-    marginTop: 3,
+    marginTop: 6,
   },
 });

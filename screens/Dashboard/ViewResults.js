@@ -87,7 +87,9 @@ authContext.currentStudentMarks.subjects && authContext.currentStudentMarks.subj
                           justifyContent: "center",
                         }}
                       >
-                        <Text style={{ color: "green" }}>25</Text>
+                        <Text style={{ color: "green" }}>
+                          {subject.subjectName === "Biology" || subject.subjectName ==="Physics" ? 10:25 }
+                        </Text>
                       </DataTable.Cell>
                     </DataTable.Row>
                   </>
@@ -96,9 +98,9 @@ authContext.currentStudentMarks.subjects && authContext.currentStudentMarks.subj
 
             <View style={{width:"100%",justifyContent:"center",alignItems:'center',marginTop:30}}>
               
-               <View style={{flexDirection:"row",justifyContent:'center'}}>
-               <Text style={{fontSize:18,color:"red"}}>Percentage - </Text> 
-               <Text style={{fontSize:18,color:"red"}}>{Math.round(totalMarks/175)*100}%</Text>
+               <View style={{width:"100%",flexDirection:"row",justifyContent:'space-between',alignItems:"center",padding:14}}>
+               <Text style={{color:"green",fontSize:20}}>Grand Total - {totalMarks}</Text>
+               <Text style={{fontSize:18,color:"red"}}>Percentage - {Math.round(Math.round(totalMarks)/(145)*100)}% </Text> 
                 </View>
             </View>
           </>

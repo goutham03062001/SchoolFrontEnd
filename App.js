@@ -1,4 +1,4 @@
-import React ,{useContext}from 'react';
+import React ,{useState,useContext}from 'react';
 import {View, StyleSheet,Text,Image} from 'react-native';
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from '@react-navigation/native';
@@ -22,6 +22,7 @@ import FacultyHomeWork from "./screens/TeacherDashboard/HomeWork"
 import FacultyLeaveLetter from "./screens/TeacherDashboard/LeaveLetters";
 import TeacherDashboardHandler from './screens/TeacherDashboard/TeacherDashboardHandler';
 import ExperimentHandler from './screens/Dashboard/Experiments/ExperimentHandler';
+import AnimatedSplash from 'react-native-animated-splash-screen';
 function AuthStack(){
   return(<>
       <Stack.Navigator>
@@ -33,6 +34,7 @@ function AuthStack(){
 function Authenticated(){
   return(<>
          <BottomTab.Navigator
+         
          >
           <BottomTab.Screen name = "dashboard" component={DashboardHandler}
           options={{ tabBarIcon : ()=><Image source={require("./assets/Home.png")} style={{width:25,height:28}}/> ,headerShown:false,tabBarActiveBackgroundColor:"#BC7AF9",tabBarInactiveBackgroundColor:"#ffff",tabBarActiveTintColor:"white",tabBarItemStyle:{borderRadius:1,padding:2,borderBottomRightRadius:25,borderTopRightRadius:1}}}
@@ -103,6 +105,18 @@ function NavigationComponent(){
 }
 
 function App(){
+  const [loading,setLoading] = useState(false);
+  setTimeout(()=>{
+    setLoading(true);
+  },3000);
+  <AnimatedSplash
+      translucent={true}
+      isLoaded={loading}
+      logoImage={require("./assets/SplashAnimated.gif")}
+      backgroundColor={"#262626"}
+      logoHeight={150}
+      logoWidth={150}
+    ></AnimatedSplash>
   return (
     <>
       <AuthContextProvider>

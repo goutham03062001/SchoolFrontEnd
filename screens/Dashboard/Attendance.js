@@ -1,6 +1,7 @@
 import { View, StyleSheet, ScrollView } from "react-native";
-import React from "react";
+import React,{useContext} from "react";
 import { Card, Button, List, Avatar, Text } from "react-native-paper";
+import { AuthContext } from '../../context/AuthContext';
 
 function CardComponent({ month, percentage, d, p, a }) {
   return (
@@ -8,27 +9,36 @@ function CardComponent({ month, percentage, d, p, a }) {
       <Card style={{ marginTop: 6 }}>
         
         <Card.Content>
-          <Text>Your Monthly Attendance Display Will Here.</Text>
+         <View style={{width:"100%",height:45,flex:1,flexDirection:"row",justifyContent:"space-between",alignItems:"center"}}>
+         <View style = {{width:"45%"}}>
+          <Text>{month}</Text>
+         </View>
+         <View style={{width:"55%",height:"100%",flex:1,flexDirection:"row",justifyContent:"space-around",alignItems:"center"}}>
+          <Text style={{color:"blue",fontWeight:'800'}}>D - {d}</Text>
+          <Text style={{color:"green",fontWeight:"800"}}>P - {p}</Text>
+          <Text style={{color:"red",fontWeight:"900"}}>A - {a}</Text>
+         </View>
+         </View>
         </Card.Content>
       </Card>
     </>
   );
 }
 const Attendance = () => {
+  const authContext = useContext(AuthContext);
   return (
     <ScrollView>
       <View style={styles.rootContainer}>
-        <CardComponent month="June" percentage="70" d="10" p="7" a="3" />
-        
-        {/* <CardComponent month="August" percentage="73" d="25" p="20" a="5" />
-        <CardComponent month="September" percentage="90" d="21" p="20" a="1" />
-        <CardComponent month="October" percentage="100" d="23" p="20" a="3" />
-        <CardComponent month="November" percentage="79" d="23" p="20" a="3" />
-        <CardComponent month="December" percentage="92" d="20" p="20" a="3" />
-        <CardComponent month="January" percentage="80" d="18" p="15" a="3" />
-        <CardComponent month="February" percentage="100" d="17" p="17" a="0" />
-        <CardComponent month="March" percentage="100" d="20" p="20" a="0" />
-        <CardComponent month="April" percentage="100" d="20" p="20" a="0" /> */}
+
+       {authContext && authContext.currentLoggedInStudent.Attendance.length>0 ? (<>
+        <View>
+          {
+            authContext.currentLoggedInStudent.Attendance.map((item,key=item._id)=>(<>
+             <CardComponent key={item._id} month = {item.month} d = {item.workingDays} p = {item.presentDays} a = {item.absentDays}/>
+            </>))
+          }
+        </View>
+       </>) : <Text>Your Attendance is not yet uploaded</Text>}
       </View>
     </ScrollView>
   );

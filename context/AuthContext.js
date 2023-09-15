@@ -30,7 +30,9 @@ export const AuthContext = createContext({
     postHomeWork:(className,subjectName,description)=>{},
     getExamMarks : (examName,className,admissionId,studentName)=>{},
     currentStudentMarks : {},
-    getStudentDetailsByClassName: (className)=>{}
+    getStudentDetailsByClassName: (className)=>{},
+    loadFeeDetails:(AdmissionNumber)=>{},
+    feeDetails:[{}]
 })
 
 export default function AuthContextProvider({children}){
@@ -45,6 +47,7 @@ export default function AuthContextProvider({children}){
     const[currentLoggedInFaculty,setCurrentLoggedInFaculty] = useState({});
     const[currentLeaveLettersByClassName,setCurrentLeaveLettersByClassName] = useState([{}]);
     const[currentStudentMarks,setCurrentStudentMarks] = useState({});
+    const[feeDetails,setFeeDetails] = useState([{}]);
     async function updateCurrentStatus(role,id){
        let currRole =  await AsyncStorage.getItem("role");
         setCurrentLoggedInStatus(currRole);
@@ -319,6 +322,23 @@ export default function AuthContextProvider({children}){
             setLoading(false);
         })
     }
+
+    async function loadFeeDetails(AdmissionNumber){
+        try {
+            const response = await axios.get(BACKEND_API_URL+"/StudentRoutes/FeeDetails/get/AdmissionNumber/"+AdmissionNumber)
+            if(response){
+                console.log("Payment History")
+                console.log(response.data);
+                setFeeDetails(response.data);
+            }else{
+                console.log("No response !!");
+            }
+        } catch (error) {
+            setLoading(false);
+            console.log("Error Occurred "+error.message)
+        }
+    }
+
     const values = {
         signup: signup,
         studentLogin:studentLogin,
@@ -346,7 +366,9 @@ export default function AuthContextProvider({children}){
         postHomeWork:postHomeWork,
         getExamMarks:getExamMarks,
         currentStudentMarks:currentStudentMarks,
-        getStudentDetailsByClassName:getStudentDetailsByClassName
+        getStudentDetailsByClassName:getStudentDetailsByClassName,
+        loadFeeDetails:loadFeeDetails,
+        feeDetails:feeDetails
     }
     return(<AuthContext.Provider value={values}>{children}</AuthContext.Provider>)
 }
