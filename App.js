@@ -23,6 +23,7 @@ import FacultyLeaveLetter from "./screens/TeacherDashboard/LeaveLetters";
 import TeacherDashboardHandler from './screens/TeacherDashboard/TeacherDashboardHandler';
 import ExperimentHandler from './screens/Dashboard/Experiments/ExperimentHandler';
 import AnimatedSplash from 'react-native-animated-splash-screen';
+import StartingScreen from './screens/Dashboard/Quiz/StartingScreen';
 function AuthStack(){
   return(<>
       <Stack.Navigator>
@@ -48,6 +49,11 @@ function Authenticated(){
           />
           <BottomTab.Screen name = "Home work" component={HomeWorkHandler}
             options={{ tabBarIcon : ()=><Image source={require("./assets/HomeWork.png")} style={{width:25,height:28}}/>,
+            headerShown : false,tabBarActiveBackgroundColor:"#191D88",tabBarActiveTintColor:"white",tabBarItemStyle:{borderRadius:1,padding:2,borderBottomRightRadius:25,borderTopRightRadius:1},
+            }}
+          />
+          <BottomTab.Screen name = "Quiz" component={StartingScreen}
+            options={{ tabBarIcon : ()=><Image source={require("./assets/Quiz.png")} style={{width:40,height:40}}/>,
             headerShown : false,tabBarActiveBackgroundColor:"#191D88",tabBarActiveTintColor:"white",tabBarItemStyle:{borderRadius:1,padding:2,borderBottomRightRadius:25,borderTopRightRadius:1},
             }}
           />

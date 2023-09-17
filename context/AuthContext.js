@@ -32,7 +32,9 @@ export const AuthContext = createContext({
     currentStudentMarks : {},
     getStudentDetailsByClassName: (className)=>{},
     loadFeeDetails:(AdmissionNumber)=>{},
-    feeDetails:[{}]
+    feeDetails:[{}],
+    getQuizLink: ()=>{},
+    quizExamLink : {}
 })
 
 export default function AuthContextProvider({children}){
@@ -338,6 +340,25 @@ export default function AuthContextProvider({children}){
             console.log("Error Occurred "+error.message)
         }
     }
+    async function getQuizLink(){
+        const examDate = new Date().toLocaleDateString();
+        try {
+            setLoading(true);
+            console.log("Getting today's exam");
+            const response = await axios.get(BACKEND_API_URL+`/StudentRoutes/exam/${examDate}`);
+            if(response){
+                console.log(response.data);
+                
+            }else{
+                console.log("No response!!");
+            }
+            setLoading(false);
+        } catch (error) {
+            setLoading(false);
+            console.log("Error Occurred "+error.message)
+
+        }
+    }
 
     const values = {
         signup: signup,
@@ -368,7 +389,8 @@ export default function AuthContextProvider({children}){
         currentStudentMarks:currentStudentMarks,
         getStudentDetailsByClassName:getStudentDetailsByClassName,
         loadFeeDetails:loadFeeDetails,
-        feeDetails:feeDetails
+        feeDetails:feeDetails,
+        getQuizLink:getQuizLink
     }
     return(<AuthContext.Provider value={values}>{children}</AuthContext.Provider>)
 }
