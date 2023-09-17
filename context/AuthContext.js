@@ -34,7 +34,7 @@ export const AuthContext = createContext({
     loadFeeDetails:(AdmissionNumber)=>{},
     feeDetails:[{}],
     getQuizLink: ()=>{},
-    quizExamLink : {}
+    quizExamLink : []
 })
 
 export default function AuthContextProvider({children}){
@@ -50,6 +50,7 @@ export default function AuthContextProvider({children}){
     const[currentLeaveLettersByClassName,setCurrentLeaveLettersByClassName] = useState([{}]);
     const[currentStudentMarks,setCurrentStudentMarks] = useState({});
     const[feeDetails,setFeeDetails] = useState([{}]);
+    const[quizExamLink,setQuizExamLink] = useState([]);
     async function updateCurrentStatus(role,id){
        let currRole =  await AsyncStorage.getItem("role");
         setCurrentLoggedInStatus(currRole);
@@ -341,13 +342,16 @@ export default function AuthContextProvider({children}){
         }
     }
     async function getQuizLink(){
-        const examDate = new Date().toLocaleDateString();
+        const options = { year: 'numeric', month: 'numeric', day: 'numeric' };
+        const examDate = new Date().toLocaleDateString('en-US',options);
         try {
             setLoading(true);
-            console.log("Getting today's exam");
-            const response = await axios.get(BACKEND_API_URL+`/StudentRoutes/exam/${examDate}`);
+            console.log("Getting today's exam ");
+            const body = {examDate}
+            const response = await axios.get(BACKEND_API_URL+`/StudentsRoutes/Quiz/exam/date/:examDate`,body);
             if(response){
                 console.log(response.data);
+                setQuizExamLink(response.data)
                 
             }else{
                 console.log("No response!!");
@@ -390,7 +394,8 @@ export default function AuthContextProvider({children}){
         getStudentDetailsByClassName:getStudentDetailsByClassName,
         loadFeeDetails:loadFeeDetails,
         feeDetails:feeDetails,
-        getQuizLink:getQuizLink
+        getQuizLink:getQuizLink,
+        quizExamLink:quizExamLink
     }
     return(<AuthContext.Provider value={values}>{children}</AuthContext.Provider>)
 }
