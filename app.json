@@ -2,14 +2,14 @@
   "expo": {
     "name": "TriveniHighSchool",
     "slug": "TriveniHighSchool",
-    "version": "3.0.4",
+    "version": "3.0.5",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#9D76C1"
     },
     "assetBundlePatterns": [
       "**/*"

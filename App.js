@@ -1,5 +1,5 @@
 import React ,{useState,useContext}from 'react';
-import {View, StyleSheet,Text,Image} from 'react-native';
+import {View, StyleSheet,Text,Image,Dimensions} from 'react-native';
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from '@react-navigation/native';
 import AuthContextProvider from './context/AuthContext';
@@ -24,6 +24,7 @@ import TeacherDashboardHandler from './screens/TeacherDashboard/TeacherDashboard
 import ExperimentHandler from './screens/Dashboard/Experiments/ExperimentHandler';
 import AnimatedSplash from 'react-native-animated-splash-screen';
 import StartingScreen from './screens/Dashboard/Quiz/StartingScreen';
+import { Platform } from 'react-native';
 function AuthStack(){
   return(<>
       <Stack.Navigator>
@@ -114,20 +115,28 @@ function App(){
   const [loading,setLoading] = useState(false);
   setTimeout(()=>{
     setLoading(true);
-  },3000);
-  <AnimatedSplash
+  },5000);
+
+
+  return (
+    <>
+    
+      <View style={styles.container}>
+      <AuthContextProvider>
+      <AnimatedSplash
       translucent={true}
       isLoaded={loading}
       logoImage={require("./assets/SplashAnimated.gif")}
-      backgroundColor={"#262626"}
-      logoHeight={150}
-      logoWidth={150}
-    ></AnimatedSplash>
-  return (
-    <>
-      <AuthContextProvider>
-        <NavigationComponent/>
+      backgroundColor={"#ffff"}
+      logoHeight={Dimensions.get('window').width}
+      logoWidth={Dimensions.get('window').height}
+    >
+
+<NavigationComponent/>
+    </AnimatedSplash>
+       
       </AuthContextProvider>
+      </View>
     </>
   );
 }
@@ -135,6 +144,10 @@ function App(){
 const styles = StyleSheet.create({
   rootContainer:{
     padding:50
+  },
+  container:{
+    flex:1,
+    justifyContent:"center",
   }
 })
 
