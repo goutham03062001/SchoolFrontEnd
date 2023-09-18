@@ -127,7 +127,7 @@ function App(){
       translucent={true}
       isLoaded={loading}
       logoImage={require("./assets/SplashAnimated.gif")}
-      backgroundColor={"#ffff"}
+      backgroundColor={"#1cccad"}
       logoHeight={Dimensions.get('window').width}
       logoWidth={Dimensions.get('window').height}
     >
