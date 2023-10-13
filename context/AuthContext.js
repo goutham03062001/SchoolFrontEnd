@@ -34,7 +34,9 @@ export const AuthContext = createContext({
     loadFeeDetails:(AdmissionNumber)=>{},
     feeDetails:[{}],
     getQuizLink: ()=>{},
-    quizExamLink : []
+    quizExamLink : [],
+    getCurrentWeekExams : ()=>{},
+    currentWeekExamsArr:[]
 })
 
 export default function AuthContextProvider({children}){
@@ -51,6 +53,7 @@ export default function AuthContextProvider({children}){
     const[currentStudentMarks,setCurrentStudentMarks] = useState({});
     const[feeDetails,setFeeDetails] = useState([{}]);
     const[quizExamLink,setQuizExamLink] = useState([]);
+    const[currentWeekExamsArr,setCurrentWeekExamsArr] = useState([]);
     async function updateCurrentStatus(role,id){
        let currRole =  await AsyncStorage.getItem("role");
         setCurrentLoggedInStatus(currRole);
@@ -364,6 +367,27 @@ export default function AuthContextProvider({children}){
         }
     }
 
+    async function getCurrentWeekExams(){
+        try {
+            setLoading(true);
+            console.log("Getting This Week Exams")
+            const response = await axios.get(BACKEND_API_URL+"/Exams/getCurrentWeekExams");
+            if(response){
+                console.log(response.data);
+                setCurrentWeekExamsArr(response.data);
+            console.log(" This Week Exams")
+
+            }else{
+                console.log("No response!")
+            }
+            setLoading(false);
+        } catch (error) {
+            setLoading(false);
+            console.log("Error Occurred "+error.message)
+
+        }
+    }
+
     const values = {
         signup: signup,
         studentLogin:studentLogin,
@@ -395,7 +419,9 @@ export default function AuthContextProvider({children}){
         loadFeeDetails:loadFeeDetails,
         feeDetails:feeDetails,
         getQuizLink:getQuizLink,
-        quizExamLink:quizExamLink
+        quizExamLink:quizExamLink,
+        getCurrentWeekExams:getCurrentWeekExams,
+        currentWeekExamsArr:currentWeekExamsArr
     }
     return(<AuthContext.Provider value={values}>{children}</AuthContext.Provider>)
 }

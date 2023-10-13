@@ -1,8 +1,8 @@
 {
   "expo": {
-    "name": "Triveni High School",
-    "slug": "TriveniHighSchool",
-    "version": "3.0.6",
+    "name": "CompeteTricks",
+    "slug": "CompeteTricks",
+    "version": "1.0.1",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
@@ -22,18 +22,13 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.goutham0306.TriveniHighSchool"
+      "package": "com.goutham0306.CompeteTricks"
     },
     "web": {
       "favicon": "./assets/favicon.png"
     },
     "runtimeVersion": {
       "policy": "sdkVersion"
-    },
-    "extra": {
-      "eas": {
-        "projectId": "d04e8e07-6c93-45bd-a06d-0e9df605833f"
-      }
     }
   }
 }

@@ -1,1 +1,1 @@
-export const BACKEND_API_URL = "https://trivenihighschool.onrender.com"
+export const BACKEND_API_URL = "https://competetricks.onrender.com"
