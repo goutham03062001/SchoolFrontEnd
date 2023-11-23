@@ -113,7 +113,7 @@ export default function AuthContextProvider({children}){
             }
         }
         const body = {AdmissionNumber,password}
-        const response = await axios.post(BACKEND_API_URL+"/StudentsRoutes/auth/login",body,config).then((data)=>{
+        const response = await axios.post(BACKEND_API_URL+"/Auth/Login",body,config).then((data)=>{
             console.log(data.data);
             if(data.data === "You are not registered yet."){
                 setLoading(false);

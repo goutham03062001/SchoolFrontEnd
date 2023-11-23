@@ -29,7 +29,7 @@ function  SixthStartingScreen() {
     <Drawer.Navigator>
       <Drawer.Screen name="Class - 6" component={StartingScreen} />
       <Drawer.Screen name = "Articles" component={ArticlesStartingScreen}/>
-      <Drawer.Screen name = "Parts of Speech" component={PartsofSpeechStartingScreen}/>
+      <Drawer.Screen name = "Parts of Speech Quiz" component={PartsofSpeechStartingScreen}/>
       {/* <Drawer.Screen name="Article" component={Article} /> */}
     </Drawer.Navigator>
   );
