@@ -6,7 +6,6 @@ import AuthContextProvider from './context/AuthContext';
 import Signup from './screens/Auth/Signup';
 import Login from './screens/Auth/Login';
 import DashboardHandler from './screens/Dashboard/DashboardHandler';
-import DemoPayment from './screens/Dashboard/DemoPayment';
 import { AuthContext } from './context/AuthContext';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';

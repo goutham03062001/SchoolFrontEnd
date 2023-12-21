@@ -1,14 +1,14 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 
-const PreviousWeekExams = () => {
+const PredicativeUse = () => {
   return (
     <View>
-      <Text>PreviousWeekExams</Text>
+      <Text>PredicativeUse</Text>
     </View>
   )
 }
 
-export default PreviousWeekExams
+export default PredicativeUse
 
 const styles = StyleSheet.create({})

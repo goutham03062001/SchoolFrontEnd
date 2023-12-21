@@ -2,9 +2,9 @@
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Button,Image } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
-import { questions } from './PartsOfSpeechQuestions';
+// import { questions } from './PartsOfSpeechQuestions';
 
-const QuizApp = () => {
+const QuizApp = ({questions}) => {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [selectedOption, setSelectedOption] = useState(null);
   const [userAnswers, setUserAnswers] = useState([]);
@@ -33,22 +33,22 @@ const QuizApp = () => {
   };
 
   const calculateScore = () => {
-    const correctAnswers = userAnswers.filter(
+    const answers = userAnswers.filter(
       (answer) =>
-        answer.selectedOption === questions[answer.questionId - 1].correctAnswer
+        answer.selectedOption === questions[answer.questionId - 1].answer
     );
-    return (correctAnswers.length / questions.length) * 100;
+    return (answers.length / questions.length) * 100;
   };
 
-  const renderOptions = (options, correctAnswer) => {
+  const renderOptions = (options, answer) => {
     return options.map((option, index) => (
       <TouchableOpacity
         key={index}
         style={[
           styles.option,
           selectedOption === option && styles.selectedOption,
-          selectedOption === option && option === correctAnswer && styles.correctOption,
-          selectedOption === option && option !== correctAnswer && styles.wrongOption,
+          selectedOption === option && option === answer && styles.correctOption,
+          selectedOption === option && option !== answer && styles.wrongOption,
         ]}
         onPress={() => handleOptionPress(option)}
         disabled={selectedOption !== null}
@@ -70,20 +70,20 @@ const QuizApp = () => {
         <Text style={{color:"green",fontWeight:"500",marginVertical:30,fontSize:20}}>Your Score: {score.toFixed(2)}%</Text>
         {userAnswers.map((answer, index) => {
           const question = questions[index];
-          const isCorrect = answer.selectedOption === question.correctAnswer;
+          const isCorrect = answer.selectedOption === question.answer;
 
           return (
             <View key={index} style={styles.resultContainer}>
               <Text style={{marginTop:15}}>
                 {question.question}
               </Text>
-              {renderOptions(question.options, question.correctAnswer)}
+              {renderOptions(question.options, question.answer)}
               <Text style={isCorrect ? styles.correctText : styles.wrongText}>
                 Your Answer: {answer.selectedOption}
               </Text>
 
               <Text style={ styles.correctText}>
-                Correct Answer: {question.correctAnswer}
+                Correct Answer: {question.answer}
               </Text>
             </View>
           );
@@ -100,11 +100,11 @@ const QuizApp = () => {
 </View>
 <View style={styles.container}>
       
-      <Text style={styles.question}>{questions[currentQuestion].question}</Text>
+      <Text style={styles.question}>{questions[currentQuestion].questionName}</Text>
       <Text style={{marginLeft:"80%",color:"grey"}}>{questions[currentQuestion].year}</Text>
       {renderOptions(
         questions[currentQuestion].options,
-        questions[currentQuestion].correctAnswer
+        questions[currentQuestion].answer
       )}
       <TouchableOpacity style={styles.nextButton} onPress={handleNextQuestion}>
         <Text style={{color:"yellow"}}>

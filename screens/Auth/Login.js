@@ -54,7 +54,7 @@ const Login = () => {
         <Picker.Item label="Principal" value="Principal" />
       </Picker>
              {role === "Student" && <>
-             <TextInput placeholder='Enter your admission number' style = {styles.inputContainer}
+             <TextInput placeholder='Enter your admission number / mobile number' style = {styles.inputContainer}
                 onChangeText={ (e)=>{setAdmissionNumber(e)}}
                 placeholderTextColor="white"
             />

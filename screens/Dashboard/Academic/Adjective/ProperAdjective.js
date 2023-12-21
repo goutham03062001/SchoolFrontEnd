@@ -1,14 +1,14 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 
-const UpcomingExams = () => {
+const ProperAdjective = () => {
   return (
     <View>
-      <Text>UpcomingExams</Text>
+      <Text>ProperAdjective</Text>
     </View>
   )
 }
 
-export default UpcomingExams
+export default ProperAdjective
 
 const styles = StyleSheet.create({})
