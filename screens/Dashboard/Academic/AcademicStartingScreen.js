@@ -49,11 +49,13 @@ const Classes = () => {
       </Card>
 
 
-      <Card style={{backgroundColor:"#6A2C70"}}>
+     <Pressable onPress={()=>navigation.navigate("Conjunction")}>
+     <Card style={{backgroundColor:"#6A2C70"}}>
         <Card.Content>
             <Text style={{color:"white",fontSize:16,textAlign:"center"}}>Conjunction</Text>
         </Card.Content>
       </Card>
+     </Pressable>
 
       <Card style={{backgroundColor:"#0F4C75"}}>
         <Card.Content>

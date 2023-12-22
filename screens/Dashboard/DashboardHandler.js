@@ -12,6 +12,7 @@ import NounsStartingScreen from "./Academic/class6/NounsStartingScreen";
 import PronounStartingScreen from './Academic/Pronoun/PronounStartingScreen';
 import AdjectiveStartingScreen from './Academic/Adjective/AdjectiveStartingScreen';
 import AdverbStartingScreen from './Academic/Adverb/AdverbStartingScreen';
+import ConjunctionStartingScreen from './Academic/Conjunction/ConjunctionStartingScreen';
 const DashboardHandler = () => {
     const authCtx = useContext(AuthContext);
   return (
@@ -24,6 +25,7 @@ const DashboardHandler = () => {
     <Stack.Screen name = "Pronoun" component={PronounStartingScreen} options={{headerShown:false}}/>
     <Stack.Screen name = "Adjective" component={AdjectiveStartingScreen} options={{headerShown:false}}/>
     <Stack.Screen name = "Adverb" component={AdverbStartingScreen} options={{headerShown:false}}/>
+    <Stack.Screen name = "Conjunction" component={ConjunctionStartingScreen} options={{headerShown:false}}/>
     </Stack.Navigator>
   )
 }

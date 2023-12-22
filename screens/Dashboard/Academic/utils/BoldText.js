@@ -4,7 +4,7 @@ import React from 'react'
 const BoldTextHelper = ({text,fontSize}) => {
   return (
     
-      <Text style={{fontWeight:"bold"}}>{text}</Text>
+      <Text style={{fontWeight:"bold",fontSize:fontSize}}>{text}</Text>
     
   )
 }

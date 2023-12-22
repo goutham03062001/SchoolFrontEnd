@@ -1,14 +1,14 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 
-const RelativePronoun = () => {
+const SubordinatingConjunction = () => {
   return (
     <View>
-      <Text>RelativePronoun</Text>
+      <Text>SubordinatingConjunction</Text>
     </View>
   )
 }
 
-export default RelativePronoun
+export default SubordinatingConjunction
 
 const styles = StyleSheet.create({})
