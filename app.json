@@ -15,7 +15,8 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.goutham0306.EnglishWallah"
     },
     "android": {
       "adaptiveIcon": {
