@@ -41,12 +41,14 @@ const Classes = () => {
         </Card.Content>
       </Card>
       </Pressable>
-
-      <Card style={{backgroundColor:"#00ADB5"}}>
+<Pressable onPress={()=>navigation.navigate("Preposition")}>
+  
+<Card style={{backgroundColor:"#00ADB5"}}>
         <Card.Content>
             <Text style={{color:"white",fontSize:16,textAlign:"center"}}>Preposition</Text>
         </Card.Content>
       </Card>
+</Pressable>
 
 
      <Pressable onPress={()=>navigation.navigate("Conjunction")}>
@@ -57,11 +59,13 @@ const Classes = () => {
       </Card>
      </Pressable>
 
+      <Pressable onPress={()=>navigation.navigate("Verb")}>
       <Card style={{backgroundColor:"#0F4C75"}}>
         <Card.Content>
             <Text style={{color:"white",textAlign:"center",fontSize:16}}>Verb</Text>
         </Card.Content>
       </Card>
+      </Pressable>
 
       <Card style={{backgroundColor:"#594545"}}>
         <Card.Content>
@@ -99,11 +103,13 @@ const Classes = () => {
         </Card.Content>
       </Card>
 
-      <Card style={{backgroundColor:"#FFDE7D"}}>
+     <Pressable onPress={()=>navigation.navigate("Active And Passive Voice")}>
+     <Card style={{backgroundColor:"#FFDE7D"}}>
         <Card.Content>
             <Text style={{color:"black",textAlign:"center",fontSize:16}}>Active Voice Passive Voice</Text>
         </Card.Content>
       </Card>
+     </Pressable>
       <Card style={{backgroundColor:"#610C9F"}}>
         <Card.Content>
             <Text style={{color:"white",textAlign:"center",fontSize:16}}>Question Tags</Text>

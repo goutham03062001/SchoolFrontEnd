@@ -78,6 +78,66 @@ const CoordinatingConjunction = () => {
         <Text style={{fontSize:16}}>5. They not only invited me to the diner but also sent a car for me.</Text>
       </View>
 </View>
+
+
+
+<View>
+    {/* Cumulative or Copulative Conjunctions */}
+    <Text style={{fontSize:18}}>C. Disjunctive or Alternative Conjunctions</Text>
+    <Text style={{marginTop:10,fontSize:16,lineHeight:22}}>
+    Conjunctions which are used to express a choice between two alternatives are known as Disjunctive or Alternative conjunctions.    
+    </Text>
+    
+
+      <BoldTextHelper
+        text="Ex: Or, nor, either - or, neither- nor, whether – or, else"
+        fontSize={16}
+
+      />
+
+      <View style={{marginVertical:8}}>
+        <Text style={{fontSize:16}}>1. I don’t know whether he has gone or not.</Text>
+        <Text style={{fontSize:16}}>2. I doubt whether he will help me or not.</Text>
+        <Text style={{fontSize:16}}>3. Whether he will help me or not is a doubtful.</Text>
+        <Text style={{fontSize:16}}>4. I am not sure whether she gets the job or she will have to continue teaching. </Text>
+        <Text style={{fontSize:16}}>5. You must tell the truth or I can’t help you.</Text>
+        <Text style={{fontSize:16}}>6. She is neither a teacher nor a typist.</Text>
+        <Text style={{fontSize:16}}>7. She neither loved him nor liked to marry him.</Text>
+        <Text style={{fontSize:16}}>8. You must either return my mother or sell your home to me.</Text>
+        <Text style={{fontSize:16}}>9. You must do the work sincerely else you will lose the job.</Text>
+      
+      
+      </View>
+</View>
+
+
+<View>
+    {/* Cumulative or Copulative Conjunctions */}
+    <Text style={{fontSize:18}}>D. Illative Conjunctions</Text>
+    <Text style={{marginTop:10,fontSize:16,lineHeight:22}}>
+    Conjunctions which are used to express an inference are known as Illative conjunctions.    </Text>
+    
+
+      <BoldTextHelper
+        text="Ex: For, since, so, therefore, consequently"
+        fontSize={16}
+
+      />
+
+      <View style={{marginVertical:8}}>
+        <Text style={{fontSize:16}}>1. I loved Madavi for she is very beautiful.</Text>
+        <Text style={{fontSize:16}}>2. Since you have money, you can help him.</Text>
+        <Text style={{fontSize:16}}>3. He is poor so he cannot visit America.</Text>
+        <Text style={{fontSize:16}}>4. He is my enemy therefore I dislike him. </Text>
+        <Text style={{fontSize:16}}>5. I have never seen him since his father died.</Text>
+        <Text style={{fontSize:16}}>6. You can have apples or grapes.</Text>
+        <Text style={{fontSize:16}}>7. You can go to Kanpur or luck now.</Text>
+        <Text style={{fontSize:16}}>8. Many new developments have taken place since I left home.</Text>
+        <Text style={{fontSize:16}}>9. My father died last year consequently we faced several problems.</Text>
+      
+      
+      </View>
+</View>
   </View>
   </ScrollView>
   )

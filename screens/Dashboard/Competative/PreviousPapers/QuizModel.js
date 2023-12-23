@@ -39,10 +39,9 @@ const QuizApp = ({quizId}) => {
 
   const renderButtons = () => {
     if (currentQuestion === 0) {
-      // Show "Finish Quiz" button instead of "Next" on the first question
       return (
         <TouchableOpacity style={styles.nextButton} onPress={handleNextQuestion}>
-          <Text>Finish Quiz</Text>
+          <Text>Next Question</Text>
         </TouchableOpacity>
       );
     } else if (currentQuestion === quizData.Questions.length - 1) {

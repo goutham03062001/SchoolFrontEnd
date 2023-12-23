@@ -155,7 +155,7 @@ import {
 
         <Drawer.Screen
           name="Subordinating"
-          component={CompoundConjunction}
+          component={SubordinatingConjunction}
           options={{ headerTitle: "Subordinating conjunction" }}
         />
      

@@ -22,7 +22,7 @@ const DisplayQuizNames = ()=>{
   },[])
   return (
     <>
-  <View>
+  <ScrollView>
     {authContext && authContext.loading ? <Text>Loading ...</Text> : <>
     
     {authContext && authContext.quizExamsArr && (
@@ -30,13 +30,13 @@ const DisplayQuizNames = ()=>{
        {/* <QuizModel quizData = {authContext && authContext.quizExamsArr}/> */}
        {authContext.quizExamsArr.map((exam,index)=>(<>
         {exam && (<Pressable key={index} style={styles.cardStyle} onPress={()=>{navigation.navigate("Quiz",{data : exam._id})}}>
-          <Text>{exam._id}</Text>
+          <Text key={index}>Day - {index+1}</Text>
         </Pressable>)}
        </>))}
       </>
       )}
     </>}
-  </View>
+  </ScrollView>
     </>
   
   )

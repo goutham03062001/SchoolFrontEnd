@@ -1,8 +1,8 @@
 {
   "expo": {
-    "name": "CompeteTricks",
-    "slug": "CompeteTricks",
-    "version": "1.0.5",
+    "name": "English Wallah",
+    "slug": "EnglishWallah",
+    "version": "1.0.6",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
@@ -22,8 +22,8 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.goutham0306.CompeteTricks",
-      "versionCode":2
+      "package": "com.goutham0306.EnglishWallah",
+      "versionCode":3
     },
     "web": {
       "favicon": "./assets/favicon.png"
