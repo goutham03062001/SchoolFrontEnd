@@ -23,7 +23,7 @@
         "backgroundColor": "#ffffff"
       },
       "package": "com.goutham0306.EnglishWallah",
-      "versionCode":3
+      "versionCode": 3
     },
     "web": {
       "favicon": "./assets/favicon.png"
@@ -33,7 +33,7 @@
     },
     "extra": {
       "eas": {
-        "projectId": "62df4353-97a5-480e-91c5-3dd3fa79eda3"
+        "projectId": "dabe5212-a35e-4cf1-9b4b-2c7467fec893"
       }
     }
   }

@@ -23,7 +23,11 @@ const DisplayQuizNames = ()=>{
   return (
     <>
   <ScrollView>
-    {authContext && authContext.loading ? <Text>Loading ...</Text> : <>
+    {authContext && authContext.loading ? 
+    <View style={{flex:1,justifyContent:"center",alignItems:"center"}}>
+      <Image source={require("../../../../assets/Spinner.gif")} style={{width:100,height:100}}/>
+      <Text style={{marginTop:20}}>Loading</Text>
+    </View> : <>
     
     {authContext && authContext.quizExamsArr && (
       <>
