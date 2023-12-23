@@ -21,10 +21,7 @@ import AdjectiveOfNumber from "./AdjectiveOfNumber"
 import DemonstrativeAdjective from "./DemonstrativeAdjective";
 import DistributiveAdjective from "./DistributiveAdjective";
 import InterrogativeAdjective from "./InterrogativeAdjective";
-import PossessiveAdjective from "./PossessiveAdjective";
-import EmphasizingAdjective from "./EmphasizingAdjective";
-import ExclamatoryAdjective from "./ExclamatoryAdjective";
-import ProperAdjective from "./ProperAdjective"
+import PossessiveAdjective from "./PossessiveAdjective"
 function StartingScreen() {
   const navigation = useNavigation();
   return (
@@ -204,7 +201,7 @@ function StartingScreen() {
           </Card>
         </Pressable>
 
-        <Pressable onPress={(e) => navigation.navigate("Emphasizing Adjective")}>
+        <Pressable>
           <Card style={[{ backgroundColor: "#22092C" }, styles.cardStyle]}>
             <Card.Content style={styles.contentStyle}>
               <Text style={{ color: "white" }}>Emphasizing adjective</Text>
@@ -218,7 +215,7 @@ function StartingScreen() {
           </Card>
         </Pressable>
 
-        <Pressable onPress={(e) => navigation.navigate("Exclamatory Adjective")}>
+        <Pressable>
           <Card style={[{ backgroundColor: "#22092C" }, styles.cardStyle]}>
             <Card.Content style={styles.contentStyle}>
               <Text style={{ color: "white" }}>Exclamatory adjective </Text>
@@ -232,7 +229,7 @@ function StartingScreen() {
           </Card>
         </Pressable>
 
-        <Pressable onPress={(e) => navigation.navigate("Proper Adjective")}>
+        <Pressable>
           <Card style={[{ backgroundColor: "#22092C" }, styles.cardStyle]}>
             <Card.Content style={styles.contentStyle}>
               <Text style={{ color: "white" }}>Proper Adjectives</Text>
@@ -306,17 +303,17 @@ function AdjectiveStartingScreen() {
       />
       <Drawer.Screen
         name="Emphasizing Adjective"
-        component={EmphasizingAdjective}
+        component={PredicativeUse}
         options={{ headerTitle: "Emphasizing Adjective" }}
       />
       <Drawer.Screen
         name="Exclamatory Adjective"
-        component={ExclamatoryAdjective}
+        component={PredicativeUse}
         options={{ headerTitle: "Exclamatory Adjective" }}
       />
       <Drawer.Screen
         name="Proper Adjective"
-        component={ProperAdjective}
+        component={PredicativeUse}
         options={{ headerTitle: "Proper Adjective" }}
       />
     </Drawer.Navigator>
