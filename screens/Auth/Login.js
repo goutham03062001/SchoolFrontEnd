@@ -1,7 +1,7 @@
 import React,{useState,useContext} from 'react';
-import {View, StyleSheet,Text,TextInput,Button,Alert,Image} from 'react-native';
+import {View, StyleSheet,Text,TextInput,Button,Alert,Image,Dimensions} from 'react-native';
 import { AuthContext } from '../../context/AuthContext';
-import {Button as PaperButton} from "react-native-paper";
+import {Button as PaperButton,ActivityIndicator} from "react-native-paper";
 import { useNavigation } from '@react-navigation/native';
 import { Picker } from "@react-native-picker/picker";
 
@@ -39,22 +39,19 @@ const Login = () => {
     return (
         <View style={styles.rootContainer}>
             <View style={styles.topContainer}>
-            <Text style={{textAlign:'center',paddingVertical:10,fontSize:18,color:"#8338ec"}}>LOGIN INTO YOUR ACCOUNT </Text>
-      <Image source={require("../../assets/LoginImage.jpg")} style = {{width : "100%",height:"70%"}}/>
+            {/* <Text style={{textAlign:'center',paddingVertical:10,fontSize:18,color:"#8338ec"}}>LOGIN</Text> */}
+      <Image source={require("../../assets/LoginImage.png")} style = {{width : "90%",height:"95%"}}/>
             </View>
 
             <View style={styles.bottomContainer}>
-            <Picker
+            {/* <Picker
         style={styles.inputContainer}
         onValueChange={(itemValue, itemIndex) => setRole(itemValue)}
         selectedValue={role}
       >
-        <Picker.Item label="Student" value="Student" />
-        <Picker.Item label="Teacher" value="Teacher" />
-        <Picker.Item label="Principal" value="Principal" />
-      </Picker>
+      </Picker> */}
              {role === "Student" && <>
-             <TextInput placeholder='Enter your admission number / mobile number' style = {styles.inputContainer}
+             <TextInput placeholder='Enter your  mobile number' style = {styles.inputContainer}
                 onChangeText={ (e)=>{setAdmissionNumber(e)}}
                 placeholderTextColor="white"
             />
@@ -78,9 +75,8 @@ const Login = () => {
             
             <View style={styles.btn}>
             {
-          authContext.loading ? <Button title="Loading...." style={styles.btn} 
-            color="#504099"
-          /> : <Button title="Login" style={styles.btn} onPress={loginHandler} color="#504099"/>
+          authContext.loading ?           <ActivityIndicator animating={true} color="brown" />
+ : <Button title="Login" style={styles.btn} onPress={loginHandler} color="#504099"/>
         }
             </View>
 
@@ -109,7 +105,7 @@ const styles = StyleSheet.create({
         height:"40%",
         backgroundColor:"white",
         padding:10,
-        borderBottomRightRadius:29
+        borderBottomRightRadius:Dimensions.get("screen").width/1.2
       },
       bottomContainer:{
         width:"100%",

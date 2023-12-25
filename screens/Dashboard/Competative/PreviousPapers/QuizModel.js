@@ -41,7 +41,7 @@ const QuizApp = ({quizId}) => {
     if (currentQuestion === 0) {
       return (
         <TouchableOpacity style={styles.nextButton} onPress={handleNextQuestion}>
-          <Text>Next Question</Text>
+          <Text style={{color:"white"}}>Next Question</Text>
         </TouchableOpacity>
       );
     } else if (currentQuestion === quizData.Questions.length - 1) {
@@ -110,16 +110,83 @@ const QuizApp = ({quizId}) => {
         return false;
       }
   
-      return answer.selectedOption === question.answer;
+      return question.options[answer.selectedOption] === question.answer;
     });
   
     return (correctAnswers.length / quizData.Questions.length) * 100;
   };
 
-
-  const renderOptions = (options) => {
+  const renderOptions1 = (options,answer,selectedOption) => {
     return Object.entries(options).map(([key, value], index) => (
+      <>
+        {answer===value &&answer===selectedOption ? <>
+          <TouchableOpacity
+        key={index}
+        style={[
+          styles.option,
+          selectedOption === key && styles.selectedOption,
+          {backgroundColor:"green"},
+          {width:Dimensions.get("screen").width-55}
+        ]}
+        onPress={() => handleOptionPress(key)}
+        disabled={quizCompleted}
+      >
+        <Text style={{color:"white"}}>
+          {/* {value === answer ? "true":value} */}
+          {value}
+        </Text>
+      </TouchableOpacity>
+        </> : <>
+      {value === selectedOption ? <>
+        <TouchableOpacity
+        key={index}
+        style={[
+          styles.option,
+          selectedOption === key && styles.selectedOption,
+          {backgroundColor:"red"},
+          {width:Dimensions.get("screen").width-55}
+        ]}
+        onPress={() => handleOptionPress(key)}
+        disabled={quizCompleted}
+      >
+        <Text style={{color:"white"}}>
+          {/* {value === answer ? "true":value} */}
+          {value}
+        </Text>
+      </TouchableOpacity>
+      </> : <>
       <TouchableOpacity
+        key={index}
+        style={[
+          styles.option,
+          selectedOption === key && styles.selectedOption,
+          {width:Dimensions.get("screen").width-55}
+         
+        ]}
+        onPress={() => handleOptionPress(key)}
+        disabled={quizCompleted}
+      >
+        <Text>
+          {/* {value === answer ? "true":value} */}
+          {value}
+        </Text>
+      </TouchableOpacity>
+      </>}
+        </>}
+      </>
+    ));
+  };
+  const renderOptions = (options,year) => {
+    return Object.entries(options).map(([key, value], index) => (
+     <>
+     {index ===0 ? <>
+      <View  style={{width:"100%",display:"flex",flexDirection:"row-reverse",justifyContent:"flex-start",marginLeft:35}}>
+      <Text style={{marginRight:0,marginVertical:5,backgroundColor:"#0275d8",color:"white",paddingHorizontal:10,paddingVertical:3}}>
+        {year}
+        </Text>
+      </View>
+     </> : <></>}
+       <TouchableOpacity
         key={index}
         style={[
           styles.option,
@@ -129,9 +196,11 @@ const QuizApp = ({quizId}) => {
         disabled={quizCompleted}
       >
         <Text style={selectedOption === key ? styles.selectedOptionText : styles.optionText}>
+          {/* {value === answer ? "true":value} */}
           {value}
         </Text>
       </TouchableOpacity>
+     </>
     ));
   };
 
@@ -145,11 +214,12 @@ const QuizApp = ({quizId}) => {
 
   if (quizCompleted) {
     const score = calculateScore();
+    console.log("quiz answers - ",userAnswers)
     return (
      <ScrollView>
          <View style={styles.container}>
-        <Text>Quiz Completed!</Text>
-        <Text>Your Score: {score.toFixed(2)}%</Text>
+        <Text style={{fontSize:22,marginVertical:15}}>Quiz Completed!</Text>
+        <Text style={[{fontSize:20},score>=60 ?{color:"green"}:{color:"red"}]}>Your Score: {score.toFixed(2)}% {score>=60 ? "Good 👏":"☹️"}</Text>
         {userAnswers.map((answer, index) => {
           const question = quizData.Questions[index];
           
@@ -158,21 +228,29 @@ const QuizApp = ({quizId}) => {
             return null;
           }
 
-          const isCorrect = answer.selectedOption === question.answer;
+         
 
+          const isCorrect = question.options[answer.selectedOption] === question.answer;
           return (
             <View key={index} style={styles.resultContainer}>
-              <Text style={[styles.question, isCorrect && styles.correctText]}>
+              <Text style={{fontSize:16,lineHeight:24,textAlign:"justify"}}>
                 {question.questionName}
               </Text>
-              {renderOptions(question.options)}
+              
+              {renderOptions1(question.options,question.answer,question.options[answer.selectedOption])}
               <Text style={isCorrect ? styles.correctText : styles.wrongText}>
-                Your Answer: {question.options[answer.selectedOption]}
+               your option- {question.options[answer.selectedOption]}
               </Text>
+
+              <Text style={isCorrect ? styles.correctText : styles.wrongText}>
+               correct option- {question.answer}
+              </Text>
+             
             </View>
           );
         })}
         <Button title="Retry Quiz" onPress={handleRetryQuiz} />
+        
       </View>
      </ScrollView>
     );
@@ -180,8 +258,11 @@ const QuizApp = ({quizId}) => {
     const currentQuestionData = quizData.Questions[currentQuestion];
     return (
       <View style={styles.container}>
-        <Text style={styles.question}>{currentQuestionData.questionName}</Text>
-        {renderOptions(currentQuestionData.options)}
+       <View style={styles.questionContainer}>
+       <Text style={styles.question}>{currentQuestionData.questionName}</Text>
+        
+       </View>
+        {renderOptions(currentQuestionData.options,currentQuestionData.year)}
         
         {renderButtons()}
         {/* <TouchableOpacity style={styles.nextButton} onPress={handleNextQuestion}>
@@ -197,13 +278,17 @@ const styles = StyleSheet.create({
       flex: 1,
       justifyContent: 'center',
       alignItems: 'center',
-      padding: 20,
+      padding: 5,
     },
-    question: {
+    questionContainer:{
+      display:"flex",
+      position:"relative"
+    },
+    question:{
       fontSize: 18,
       fontWeight: 'bold',
-      marginBottom: 20,
-     
+      marginBottom: 45,
+      marginVertical:14
     },
     option: {
       borderWidth: 1,

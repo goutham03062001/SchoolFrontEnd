@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View,ScrollView,Dimensions,Image,Pressable } from 'react-native'
-import React,{useContext,useEffect} from 'react'
-import { Card } from 'react-native-paper';
+import React,{useContext,useEffect} from 'react';
+import { Card,ActivityIndicator } from 'react-native-paper';
 import { AuthContext } from '../../../../context/AuthContext';
 import QuizModel from './QuizModel';
 import { useNavigation } from "@react-navigation/native";
@@ -22,25 +22,25 @@ const DisplayQuizNames = ()=>{
   },[])
   return (
     <>
-  <ScrollView>
+ 
     {authContext && authContext.loading ? 
-    <View style={{flex:1,justifyContent:"center",alignItems:"center"}}>
-      <Image source={require("../../../../assets/Spinner.gif")} style={{width:100,height:100}}/>
-      <Text style={{marginTop:20}}>Loading</Text>
+    <View style={{width:"100%",height:"100%",display:"flex",justifyContent:"center",alignItems:"center"}}>
+    <ActivityIndicator animating={true} color="black" />
+
     </View> : <>
     
     {authContext && authContext.quizExamsArr && (
-      <>
+      <ScrollView>
        {/* <QuizModel quizData = {authContext && authContext.quizExamsArr}/> */}
        {authContext.quizExamsArr.map((exam,index)=>(<>
         {exam && (<Pressable key={index} style={styles.cardStyle} onPress={()=>{navigation.navigate("Quiz",{data : exam._id})}}>
-          <Text key={index}>Day - {index+1}</Text>
+          <Text key={index} style={{fontSize:20,textAlign:"center"}}>Day - {index+1}</Text>
         </Pressable>)}
        </>))}
-      </>
+       </ScrollView>
       )}
     </>}
-  </ScrollView>
+  
     </>
   
   )

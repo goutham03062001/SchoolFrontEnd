@@ -85,11 +85,13 @@ const Classes = () => {
         </Card.Content>
       </Card>
 
-      <Card style={{backgroundColor:"#903749"}}>
+     <Pressable onPress={()=>navigation.navigate("Articles")}>
+     <Card style={{backgroundColor:"#903749"}}>
         <Card.Content>
             <Text style={{color:"white",textAlign:"center",fontSize:16}}>Articles</Text>
         </Card.Content>
       </Card>
+     </Pressable>
 
       <Card style={{backgroundColor:"#53354A"}}>
         <Card.Content>

@@ -15,7 +15,7 @@ import { AntDesign,Foundation, SimpleLineIcons , MaterialIcons} from '@expo/vect
 import { Button } from 'react-native-paper';
 
 import AnimatedSplash from 'react-native-animated-splash-screen';
-import StartingScreen from './screens/Dashboard/Quiz/StartingScreen';
+import StartingScreen from './screens/NotificationScreen';
 import { Platform } from 'react-native';
 function AuthStack(){
   return(<>

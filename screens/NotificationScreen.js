@@ -4,7 +4,7 @@ import React from 'react'
 const StartingScreen = () => {
   return (
     <View style={styles.rootContainer}>
-      <Text>Notifications Screen</Text>
+      <Text>No notifications at this moment!</Text>
     </View>
   )
 }

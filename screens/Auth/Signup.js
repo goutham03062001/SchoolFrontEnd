@@ -1,10 +1,9 @@
 import React, { useState, useContext } from "react";
-import { View, StyleSheet, Text, TextInput, Button, Alert,ActivityIndicator ,Image} from "react-native";
+import { View, StyleSheet, Text, TextInput, Button, Alert ,Image, Dimensions} from "react-native";
 import { AuthContext } from "../../context/AuthContext";
-import { Button as PaperButton } from "react-native-paper";
+import { Button as PaperButton,ActivityIndicator } from "react-native-paper";
 import { useNavigation } from "@react-navigation/native";
 import { Picker } from "@react-native-picker/picker";
-import SignupImage from "../../assets/SignupImage.jpg"
 const Signup = () => {
   const [mobile, setMobile] = useState("");
   const [AdmissionNumber, setAdmissionNumber] = useState("");
@@ -52,11 +51,11 @@ const Signup = () => {
   return (
     <View style={styles.rootContainer}>
      <View style={styles.topContainer}>
-     <Text style={{textAlign:'center',paddingVertical:10,fontSize:18,color:"#8338ec"}}>CREATE NEW ACCOUNT </Text>
-      <Image source={require("../../assets/SignupImage.jpg")} style = {{width : "100%",height:"70%"}}/>
+     {/* <Text style={{textAlign:'center',paddingVertical:10,fontSize:18,color:"#8338ec"}}>CREATE NEW ACCOUNT </Text> */}
+      <Image source={require("../../assets/SignupImage.png")} style = {{width : "90%",height:"95%"}}/>
      </View>
       <View style={styles.bottomContainer}>
-      <Picker
+      {/* <Picker
         style={styles.inputContainer}
         onValueChange={(itemValue, itemIndex) => setRole(itemValue)}
         selectedValue={role}
@@ -65,7 +64,7 @@ const Signup = () => {
         <Picker.Item label="Student" value="Student" />
         <Picker.Item label="Teacher" value="Teacher" />
         <Picker.Item label="Principal" value="Principal" />
-      </Picker>
+      </Picker> */}
      
       {role === "Student" && (
         <>
@@ -91,7 +90,7 @@ const Signup = () => {
         </>
       )}
      
-      {role === "Teacher" && (<>
+      {/* {role === "Teacher" && (<>
         <TextInput
           placeholder="Enter your mobile number"
           placeholderTextColor="white"
@@ -134,12 +133,14 @@ const Signup = () => {
           setPassword(e);
         }}
       />
-      </>)}
+      </>)} */}
 
       <View style={styles.btn}>
         {
-          authContext.loading ? <Button title="Loading.. Please Wait!" color="grey"
-          /> : <Button title="Signup"  onPress={signupHandler} color="#504099"
+          authContext.loading ? <>
+          <ActivityIndicator animating={true} color="brown" />
+
+          </> : <Button title="Signup"  onPress={signupHandler} color="#504099"
           />
         }
       </View>
@@ -176,7 +177,7 @@ const styles = StyleSheet.create({
     height:"40%",
     backgroundColor:"white",
     padding:10,
-    borderBottomRightRadius:29
+    borderBottomRightRadius:Dimensions.get("screen").width/1.2
   },
   bottomContainer:{
     width:"100%",
