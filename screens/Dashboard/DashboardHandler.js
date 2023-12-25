@@ -13,11 +13,14 @@ import PronounStartingScreen from './Academic/Pronoun/PronounStartingScreen';
 import AdjectiveStartingScreen from './Academic/Adjective/AdjectiveStartingScreen';
 import AdverbStartingScreen from './Academic/Adverb/AdverbStartingScreen';
 import ConjunctionStartingScreen from './Academic/Conjunction/ConjunctionStartingScreen';
+<<<<<<< HEAD
 import Verb from './Competative/ModelPapers/Verb';
 import VerbStartingScreen from './Academic/Verb/VerbStartingScreen';
 import ActiveAndPassiveStartingScreen from './Academic/ActiveAndPassive/ActiveAndPassiveStartingScreen';
 import PrepositionStartingScreen from './Academic/Preposition/PrepositionStartingScreen';
 import ArticlesStartingScreen from "./Academic/Articles/ArticlesStartingScreen"
+=======
+>>>>>>> 8bbfbda2f9374280528c7be8018d324b0a15e488
 const DashboardHandler = () => {
     const authCtx = useContext(AuthContext);
   return (
@@ -31,11 +34,14 @@ const DashboardHandler = () => {
     <Stack.Screen name = "Adjective" component={AdjectiveStartingScreen} options={{headerShown:false}}/>
     <Stack.Screen name = "Adverb" component={AdverbStartingScreen} options={{headerShown:false}}/>
     <Stack.Screen name = "Conjunction" component={ConjunctionStartingScreen} options={{headerShown:false}}/>
+<<<<<<< HEAD
     <Stack.Screen name = "Verb" component={VerbStartingScreen} options={{headerShown:false}}/>
     <Stack.Screen name = "Active And Passive Voice" component={ActiveAndPassiveStartingScreen} options={{headerShown:false}}/>
     <Stack.Screen name = "Preposition" component={PrepositionStartingScreen} options={{headerShown:false}}/>
     <Stack.Screen name = "Articles" component={ArticlesStartingScreen} options={{headerShown:false}}/>
     
+=======
+>>>>>>> 8bbfbda2f9374280528c7be8018d324b0a15e488
     </Stack.Navigator>
   )
 }

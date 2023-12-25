@@ -1,6 +1,10 @@
 {
   "name": "Compete Tricks",
+<<<<<<< HEAD
   "version": "3.0.11",
+=======
+  "version": "3.0.9",
+>>>>>>> 8bbfbda2f9374280528c7be8018d324b0a15e488
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
     "start": "expo start",

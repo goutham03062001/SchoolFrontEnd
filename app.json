@@ -2,7 +2,11 @@
   "expo": {
     "name": "English Wallah",
     "slug": "EnglishWallah",
+<<<<<<< HEAD
     "version": "1.0.7",
+=======
+    "version": "1.0.5",
+>>>>>>> 8bbfbda2f9374280528c7be8018d324b0a15e488
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
